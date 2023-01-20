@@ -14,7 +14,17 @@ deactivate
 
 # 必要なライブラリのインストール
 pip3 install -r requirements.txt
+
+# マイグレーション
+python manage.py makemigrations
+python manage.py migrate
+
+# サーバの起動
+python manage.py runserver
 ```
+
+
+
 
 ## Mac の場合
 
