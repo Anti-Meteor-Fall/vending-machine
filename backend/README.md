@@ -23,9 +23,6 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-
-
-
 ## Mac の場合
 
 ```bash
