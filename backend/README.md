@@ -21,6 +21,9 @@ python manage.py migrate
 
 # サーバの起動
 python manage.py runserver
+
+## スーパーユーザの作成
+python manage.py createsuperuser
 ```
 
 ## Mac の場合
