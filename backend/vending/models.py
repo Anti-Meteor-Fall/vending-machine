@@ -7,19 +7,19 @@ class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField("商品名",max_length=50)
     price = models.IntegerField("価格")
-    stock = models.IntegerField("在庫数")
+    image = models.ImageField(upload_to="images", verbose_name="イメージ画像")
+    isSet = models.BooleanField(verbose_name='セットフラグ', default=True)
     created_at = models.DateTimeField("作成日時",auto_now_add=True)
     updated_at = models.DateTimeField("更新日時",auto_now=True)
-    image = models.ImageField(upload_to="images", verbose_name="イメージ画像")
 
     def __str__(self):
         return self.name
 
-class Order_detail(models.Model):
-    """履歴テーブル"""
+class stock(models.Model):
+    """在庫テーブル"""
     id = models.AutoField(primary_key=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="商品")
-    quantity = models.IntegerField("購入数")
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="商品")
+    quantity = models.PositiveIntegerField("在庫数")
     created_at = models.DateTimeField("作成日時",auto_now_add=True)
     updated_at = models.DateTimeField("更新日時",auto_now=True)
 
@@ -36,13 +36,13 @@ class Order_Methode(models.Model):
     def __str__(self):
         return self.name
 
-class admin(models.Model):
-    """管理者テーブル"""
+class Order(models.Model):
+    """購入テーブル"""
     id = models.AutoField(primary_key=True)
-    name = models.CharField("管理者名",max_length=50)
-    password = models.CharField("パスワード",max_length=50)
+    product_id = models.ForeignKey(Product, related_name="order_product", on_delete=models.CASCADE)
+    order_method_id = models.ForeignKey(Order_Method, related_name="order_order_method", on_delete=models.CASCADE)
     created_at = models.DateTimeField("作成日時",auto_now_add=True)
     updated_at = models.DateTimeField("更新日時",auto_now=True)
-
+    
     def __str__(self):
-        return self.name
+        return str(self.product_id)
