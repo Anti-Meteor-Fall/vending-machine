@@ -11,7 +11,7 @@ class ProductView(generics.ListAPIView):
     permissions_classes = (AllowAny,)
 
 
-class StockView(generics.ListAPIView):
+class StockView(generics.RetrieveUpdateAPIView):
     queryset = Stock.objects.all()
     serializer_class = StockSerializer
     permissions_classes = (AllowAny,)
@@ -23,7 +23,7 @@ class OrderMethodView(generics.ListAPIView):
     permissions_classes = (AllowAny,)
 
 
-class OrderView(generics.ListAPIView):
+class OrderView(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permissions_classes = (AllowAny,)
