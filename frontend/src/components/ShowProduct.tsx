@@ -3,11 +3,11 @@ import { css } from "@emotion/react";
 
 const styles = {
   showImg: css `
-    font-size: 4rem;
+    font-size: 6rem;
   `,
 };
 
-const ShowProduct = (props) => {
+const ShowProduct = (props:any) => {
   return (
     <>
     {/* 一時的にsvgで表示している */}
