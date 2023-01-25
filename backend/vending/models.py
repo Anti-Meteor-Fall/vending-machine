@@ -9,7 +9,7 @@ class Product(models.Model):
     name = models.CharField("商品名", max_length=50)
     price = models.IntegerField("価格")
     image = models.ImageField(upload_to="images", verbose_name="イメージ画像")
-    isSet = models.BooleanField(verbose_name='セットフラグ', default=True)
+    is_set = models.BooleanField(verbose_name='セットフラグ', default=True)
     created_at = models.DateTimeField("作成日時", auto_now_add=True)
     updated_at = models.DateTimeField("更新日時", auto_now=True)
 
