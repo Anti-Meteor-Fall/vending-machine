@@ -4,11 +4,23 @@ from .models import Product, Stock, Order_Method, Order
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
+        # fields = [
+        #     "id",
+        #     "name",
+        #     "image",
+        # ]
         fields = '__all__'
 
 class StockSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stock
+        # fields = [
+        #     "id",
+        #     "product_id",
+        #     "quantity",
+        #     "created_at",
+        #     "updated_at",
+        # ]
         fields = '__all__'
 
 class OrderMethodSerializer(serializers.ModelSerializer):
