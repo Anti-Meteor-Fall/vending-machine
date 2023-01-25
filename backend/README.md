@@ -24,6 +24,9 @@ python manage.py runserver
 
 ## スーパーユーザの作成
 python manage.py createsuperuser
+
+## データの挿入(Windows PowerShell)
+psql -f C:\パスを記載\vending-machine\backend\sql\vending_products.sql -U postgres -d vending_machine
 ```
 
 ## Mac の場合

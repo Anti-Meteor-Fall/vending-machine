@@ -8,7 +8,7 @@ class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField("商品名", max_length=50)
     price = models.IntegerField("価格")
-    image = models.ImageField(upload_to="images", verbose_name="イメージ画像")
+    image = models.ImageField(upload_to="products", verbose_name="イメージ画像")
     is_set = models.BooleanField(verbose_name='セットフラグ', default=True)
     created_at = models.DateTimeField("作成日時", auto_now_add=True)
     updated_at = models.DateTimeField("更新日時", auto_now=True)
@@ -35,7 +35,7 @@ class Order_Method(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField("購入方法", max_length=50)
     image = models.ImageField(
-        upload_to="images", verbose_name="イメージ画像", null=True)
+        upload_to="order_methods", verbose_name="イメージ画像", null=True)
 
     def __str__(self):
         return self.name
