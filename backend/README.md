@@ -43,4 +43,19 @@ deactivate
 
 # 必要なライブラリのインストール
 pip3 install -r requirements.txt
+
+# マイグレーション
+python manage.py makemigrations
+python manage.py migrate
+
+# サーバの起動
+python manage.py runserver
+
+## スーパーユーザの作成
+python manage.py createsuperuser
+
+
+## データの挿入()
+psql -f /パスを記載/vending-machine/backend/sql/vending_products.sql -U postgres -d vending_machine
+
 ```
