@@ -358,7 +358,7 @@ CREATE TABLE public.vending_product (
     name character varying(50) NOT NULL,
     price integer NOT NULL,
     image character varying(100) NOT NULL,
-    "isSet" boolean NOT NULL,
+    is_set boolean NOT NULL,
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone NOT NULL
 );
