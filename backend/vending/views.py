@@ -1,5 +1,5 @@
-from .serializers import ProductSerializer, StockSerializer, OrderMethodSerializer, OrderSerializer
-from .models import Product, Stock, Order_Method, Order
+from .serializers import ProductSerializer, OrderMethodSerializer, OrderSerializer
+from .models import Product, Order_Method, Order
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
 
@@ -7,18 +7,6 @@ from rest_framework.permissions import AllowAny
 class ProductView(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permissions_classes = (AllowAny,)
-
-
-class StockView(generics.RetrieveUpdateAPIView):
-    queryset = Stock.objects.all()
-    serializer_class = StockSerializer
-    permissions_classes = (AllowAny,)
-
-
-class StockView(generics.RetrieveUpdateAPIView):
-    queryset = Stock.objects.all()
-    serializer_class = StockSerializer
     permissions_classes = (AllowAny,)
 
 
