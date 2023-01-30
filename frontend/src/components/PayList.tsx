@@ -1,6 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Button } from "@mui/material";
+import { useEffect, useState,createContext, useContext } from "react";
+import IdCard from "./Modals/IdCard";
+import IcCard from "./Modals/IcCard";
+import Cash from "./Modals/Cash";
+import ModalBase from "./Modals/ModalBase";
+import PayPay from "./Modals/PayPay";
+
+
 
 const styles = {
   flex: css `
@@ -19,29 +27,50 @@ const styles = {
     border-radius: 30px;
   `,
 };
-const buttonProp = { width: 120, padding: 2, margin: 2 };
+const buttonProp = { width: 120, padding: 2, margin: 2 , zIndex:10};
+
 
 const PayList = () => {
+
+const [showModal,setShowModal] = useState(-1);
+
+
+
+// モーダルウィンドウ一覧
+const modalComponents = [
+  <Cash key="1"></Cash>,
+  <PayPay key="2"></PayPay>,
+  <IdCard key="3"></IdCard>,
+  <IcCard key="4"></IcCard>,
+];
+
   return (
     <>
+      {/* モーダルウィンドウ表示 */}
+         { showModal > 0 && showModal <= 4 ? (
+      <ModalBase
+        innerModal={modalComponents[showModal - 1]}
+        setShowModal={(e: any) => setShowModal(e)}
+      ></ModalBase>
+    ) : null}
       <ul css={styles.flex}>
         <li css={styles.payButton}>
-          <Button variant="contained" size="large" sx={buttonProp}>
+          <Button variant="contained" size="large" sx={buttonProp} onClick={()=>{setShowModal(1)}}>
             現金
           </Button>
         </li>
         <li css={styles.payButton}>
-          <Button variant="contained" size="large" sx={buttonProp}>
+          <Button variant="contained" size="large" sx={buttonProp} onClick={()=>{setShowModal(2)}}>
             PayPay
           </Button>
         </li>
         <li css={styles.payButton}>
-          <Button variant="contained" size="large" sx={buttonProp}>
+          <Button variant="contained" size="large" sx={buttonProp} onClick={()=>{setShowModal(3)}}>
             ID
           </Button>
         </li>
         <li css={styles.payButton}>
-          <Button variant="contained" size="large" sx={buttonProp}>
+          <Button variant="contained" size="large" sx={buttonProp} onClick={()=>{setShowModal(4)}}>
             ICカード
           </Button>
         </li>

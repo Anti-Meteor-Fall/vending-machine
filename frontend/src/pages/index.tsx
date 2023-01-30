@@ -2,7 +2,7 @@
 import PayList from "@/components/PayList";
 import ShowProduct from "@/components/ShowProduct";
 import { css } from "@emotion/react";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const styles = {
   nav: css `
@@ -55,7 +55,7 @@ const styles = {
 
 
 export default function Home() {
-  // 選択
+  // 選択された商品
   const [selectedProduct, setSelectedProduct] = useState<Number>(-1);
 
   const showList = () => {
