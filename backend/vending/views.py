@@ -3,8 +3,14 @@ from .models import Product, Order_Method, Order
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
 
+#id並べ替え
+class ProductListView(generics.ListAPIView):
+    queryset = Product.objects.order_by('id')
+    serializer_class = ProductSerializer
+    permissions_classes = (AllowAny,)
 
-class ProductView(generics.ListAPIView):
+
+class ProductView(generics.RetrieveUpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permissions_classes = (AllowAny,)
@@ -17,6 +23,6 @@ class OrderMethodView(generics.ListAPIView):
 
 
 class OrderView(generics.ListCreateAPIView):
-    queryset = Order.objects.all()
+    queryset = Order.objects.order_by('id')
     serializer_class = OrderSerializer
     permissions_classes = (AllowAny,)
