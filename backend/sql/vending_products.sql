@@ -3,7 +3,7 @@ BEGIN;
 \encoding UTF8;
 
 -- vending_product
--- DELETE FROM vending_product;
+DELETE FROM vending_product;
 insert into vending_product (name, price, image, is_set, quantity, created_at, updated_at) values ('アクエリアス', 160, 'products/aquarius1.png', TRUE, 10, current_timestamp, current_timestamp); --1
 insert into vending_product (name, price, image, is_set, quantity, created_at, updated_at) values ('アクエリアスゼロカロリー', 160, 'products/aquarius2.png', TRUE, 10, current_timestamp, current_timestamp); --2
 insert into vending_product (name, price, image, is_set, quantity, created_at, updated_at) values ('アクエリアス経口補水液', 160, 'products/aquarius3.png', TRUE, 10, current_timestamp, current_timestamp); --3
@@ -71,4 +71,9 @@ insert into vending_product (name, price, image, is_set, quantity, created_at, u
 insert into vending_product (name, price, image, is_set, quantity, created_at, updated_at) values ('スプライト', 160, 'products/sprite1.png', TRUE, 10, current_timestamp, current_timestamp); --65
 
 -- vending_order_method
+DELETE FROM vending_order_method;
+insert into vending_order_method (name,image) values ('現金','order_methods/order_method1.png'); --1
+insert into vending_order_method (name,image) values ('交通系IC','order_methods/order_method2.png'); --2
+insert into vending_order_method (name,image) values ('PayPay','order_methods/order_method3.png'); --3
+insert into vending_order_method (name,image) values ('クレジットカード','order_methods/order_method4.png'); --4
 COMMIT;
