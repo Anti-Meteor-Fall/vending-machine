@@ -23,6 +23,6 @@ class OrderMethodView(generics.ListAPIView):
 
 
 class OrderView(generics.ListCreateAPIView):
-    queryset = Order.objects.all()
+    queryset = Order.objects.order_by('id')
     serializer_class = OrderSerializer
     permissions_classes = (AllowAny,)
