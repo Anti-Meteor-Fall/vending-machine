@@ -1,33 +1,35 @@
+/* eslint-disable @next/next/no-img-element */
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
 const styles = {
-  showImg: css `
-    font-size: 6rem;
+  coverImg: css  `
+    margin: 30px;
+    width: auto;
+    height: 150px;
+  `,
+  showImg: css  `
+    width: auto;
+    height: 150px;
+  `,
+  productInfo: css  `
+    margin-top: 8px;
+    text-align: center;
   `,
 };
 
-const ShowProduct = (props:any) => {
+const ShowProduct = (props: any) => {
   return (
     <>
-    {/* 一時的にsvgで表示している */}
-<div>
-
-      <svg
-        css={styles.showImg}
-        xmlns="http://www.w3.org/2000/svg"
-        width="1em"
-        height="1em"
-        viewBox="0 0 20 20"
-        >
-        <path
-          fill="currentColor"
-          d={props.imgPath}
-          />
-      </svg>
-      <div>{props.index}</div>
-          </div>
-     
+      <div css={styles.coverImg}>
+        <div css={styles.showImg}>
+          <img src={props.url} alt="" css={styles.showImg} />
+        </div>
+        <div css={styles.productInfo}>
+          {props.name}
+          {props.price}円
+        </div>
+      </div>
     </>
   );
 };
