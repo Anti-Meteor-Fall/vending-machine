@@ -1,7 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import IDImage from "@/images/id.png"
-import Image from "next/image";
+import { orderState } from "@/states/orderState";
+import { useSetRecoilState } from "recoil";
 
 
 const styles = {
@@ -10,17 +11,17 @@ cover: css `
   width:1000px;
   height:400px;
 `,
-
 };
 
 const IdCard = () => {
+  const setOder = useSetRecoilState(orderState)
+
 
   return (
-    <div css={styles.cover} onClick={()=>{alert("購入完了")}}>
-      <Image src={IDImage} alt="" />
+    <div css={styles.cover} onClick={()=>{setOder(3)}}>
+      <img src="http://127.0.0.1:8000/order_methods/order_method4.png" alt="" />
       Touch
     </div>
-     
 
   );
 };

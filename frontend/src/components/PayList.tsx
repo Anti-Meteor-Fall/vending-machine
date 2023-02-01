@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Button } from "@mui/material";
-import { useEffect, useState,createContext, useContext } from "react";
 import IdCard from "./Modals/IdCard";
 import IcCard from "./Modals/IcCard";
 import Cash from "./Modals/Cash";
 import ModalBase from "./Modals/ModalBase";
 import PayPay from "./Modals/PayPay";
+import { useRecoilState } from "recoil";
+import { modalState } from "@/states/modalState";
 
 
 
@@ -32,7 +33,7 @@ const buttonProp = { width: 120, padding: 2, margin: 2 , zIndex:10};
 
 const PayList = () => {
 
-const [showModal,setShowModal] = useState(-1);
+const [showModal,setShowModal] = useRecoilState(modalState);
 
 
 

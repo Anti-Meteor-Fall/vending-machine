@@ -20,8 +20,10 @@ yarn start
 
 # 使用プラグイン
 
-| プラグイン名                      | 使用用途       |
-| --------------------------------- | -------------- |
-| gsap                              | アニメーション |
-| @mui/icons-material @mui/material | アイコン       |
-| @emotion/styled @emotion/react    | スタイル       |
+| プラグイン名                      | 使用用途           |
+| --------------------------------- | ------------------ |
+| gsap                              | アニメーション     |
+| @mui/icons-material @mui/material | アイコン           |
+| @emotion/styled @emotion/react    | スタイル           |
+| recoil                            | 状態管理           |
+| vivus                             | svg アニメーション |
