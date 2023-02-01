@@ -1,9 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
 import { Button } from "@mui/material";
 import RemoveIcon from '@mui/icons-material/Remove';
+import { useSetRecoilState } from "recoil";
+import { orderState } from "@/states/orderState";
 
 
 const styles = {
@@ -24,6 +26,8 @@ buttonSpace: css `
 
 const Cash = () => {
   const [inputValue,setInputValue] =  useState<number>(0)
+
+  const setOder = useSetRecoilState(orderState)
 
   return (
     <div css={styles.cover}>
@@ -52,7 +56,7 @@ const Cash = () => {
             </Button>
         </div>
       </div>
-        <div><Button onClick={()=>{alert("購入完了")}}>購入</Button></div>
+        <div><Button onClick={()=>{setOder(1)}}>購入</Button></div>
     </div>
      
 

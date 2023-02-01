@@ -1,32 +1,36 @@
+/* eslint-disable @next/next/no-img-element */
 /** @jsxImportSource @emotion/react */
+import { orderState } from "@/states/orderState";
 import { css } from "@emotion/react";
-import Image from "next/image";
-import qr from "@/images/qr.png"
-import paypay from "@/images/paypay.png"
-
+import { useSetRecoilState } from "recoil";
 
 const styles = {
-
-cover: css `
-  width:1000px;
-  height:400px;
-`,
-paypayImg :css `
-  width: 200px;
-  height: 200px;
-  `
-
+  cover: css `
+    width: 800px;
+    height: 400px;
+  `,
+  paypayImg: css `
+    margin: 10px;
+    width: 600px;
+  `,
 };
 
 const PayPay = () => {
+  const setOder = useSetRecoilState(orderState);
 
   return (
-    <div css={styles.cover}>
-<Image src={paypay} alt="" css={styles.paypayImg} />   
-<Image src={qr} alt="" />   
- </div>
-     
-
+    <div
+      css={styles.cover}
+      onClick={() => {
+        setOder(2);
+      }}
+    >
+      <img
+        src="http://127.0.0.1:8000/order_methods/order_method3.jpg"
+        alt=""
+        css={styles.paypayImg}
+      />
+    </div>
   );
 };
 export default PayPay;

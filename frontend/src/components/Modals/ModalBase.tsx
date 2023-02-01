@@ -4,6 +4,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import { IconButton } from "@mui/material";
 import { useEffect } from "react";
 import gsap from "gsap";
+import { useRecoilState } from "recoil";
+import { modalState } from "@/states/modalState";
+import { orderState } from "@/states/orderState";
 
 const styles = {
   cover: css `
@@ -35,6 +38,10 @@ const styles = {
 
 const ModalBase = (props: any) => {
 
+  const [showModal,setShowModal] = useRecoilState(modalState);
+  const [oederState,setOrderSate] = useRecoilState(orderState);
+
+
   // モーダル表示アニメーション
   const openAnimetion = () =>{
     gsap.to(".cash", { y: 800, duration: 0.5 });
@@ -47,18 +54,24 @@ const ModalBase = (props: any) => {
   // モーダル非表示アニメーション
   const closeAnimetion = () => {
     gsap.to(".cash", { y: 0, duration: 0.5 });
-    gsap.to(".cashPopCover", {
-      backgroundColor: "rgba(0,0,0,0)",
-      duration: 0.5,
-      onComplete: () => {
-        props.setShowModal(-1);
-      },
-    });
+      gsap.to(".cashPopCover", {
+        backgroundColor:oederState<0? "rgba(0,0,0,0)":"",
+        duration: 0.5,
+        onComplete: () => {
+          setShowModal(-1);
+        },
+      });
   };
 
+// モーダルが選択されたらアニメーションを実行
   useEffect(() => {
     openAnimetion()
   });
+
+// 購入確定時の処理
+  useEffect(() => {
+    if(oederState>0)closeAnimetion()
+  }),[oederState];
 
   return (
     <>

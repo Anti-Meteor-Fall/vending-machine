@@ -1,9 +1,13 @@
 /** @jsxImportSource @emotion/react */
-import SelectedProduct from "@/components/Modals/selectedProduct";
+import SelectedProduct from "@/components/Modals/SelectedProduct";
+import OrderComplete from "@/components/OrderConplete";
 import PayList from "@/components/PayList";
 import ShowProduct from "@/components/ShowProduct";
+import { orderState } from "@/states/orderState";
+import { productSelectState } from "@/states/productSelectState";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
+import {  useRecoilState, useRecoilValue } from "recoil";
 
 const styles = {
   nav: css  `
@@ -65,7 +69,9 @@ export default function Home() {
   const [error, setError] = useState({});
 
   // 選択された商品
-  const [selectedProduct, setSelectedProduct] = useState<Number>(-1);
+  const [selectedProduct, setSelectedProduct] = useRecoilState(productSelectState);
+
+  const isorderEvent = useRecoilValue(orderState)
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/vending/productslist/?format=json")
@@ -135,6 +141,10 @@ export default function Home() {
             <PayList></PayList>
           </div>
         </div>
+
+        {/* 購入時の表示と処理 */}
+      {isorderEvent> 0 ?<OrderComplete></OrderComplete>:""}
+
       </main>
     </>
   );
