@@ -74,7 +74,7 @@ export default function Home() {
   const isorderEvent = useRecoilValue(orderState)
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/vending/productslist/?format=json")
+    fetch("http://127.0.0.1:8000/api/vending/productslist/")
       .then((responce) => responce.json())
       .then((res) => setResult(res.slice(0, 24)))
       .catch((err) => setError(err));
@@ -86,6 +86,7 @@ export default function Home() {
     result.map((value) => {
       items.push(
         <div
+        key={value.id}
           css={styles.product}
           onClick={() => {
             setSelectedProduct(value.id);
@@ -101,16 +102,17 @@ export default function Home() {
   const showSelectedProduct = () => {
     if (selectedProduct < 0) {
       return;
-    }
-    return (
-      <>
+    }else{
+      return (
+        <>
         <SelectedProduct
           url={result[selectedProduct - 1].image}
           name={result[selectedProduct - 1].name}
           price={result[selectedProduct - 1].price}
-        ></SelectedProduct>
+          ></SelectedProduct>
       </>
     );
+  }
   };
 
   // 商品選択してから10秒経過したら選択状態を解除
@@ -143,7 +145,7 @@ export default function Home() {
         </div>
 
         {/* 購入時の表示と処理 */}
-      {isorderEvent> 0 ?<OrderComplete></OrderComplete>:""}
+      {isorderEvent> 0 ?<OrderComplete json={result}></OrderComplete>:""}
 
       </main>
     </>
