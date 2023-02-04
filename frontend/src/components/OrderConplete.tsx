@@ -63,7 +63,15 @@ fetch('http://127.0.0.1:8000/api/vending/products/'+sendValue.id, {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-    sendValue
+      "id": sendValue.id,
+      "name": sendValue.name,
+      "price": sendValue.price,
+      "image": sendValue.image,
+      "is_set": sendValue.is_set,
+      "quantity": sendValue.quantity,
+      "created_at": sendValue.created_at,
+      "updated_at": isoStr
+  
   })
 })
 

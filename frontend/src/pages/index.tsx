@@ -25,12 +25,20 @@ const styles = {
     justify-content: space-around;
   `,
   productList: css  `
-    width: 800px;
+    width: 880px;
     display: flex;
     flex-wrap: wrap;
   `,
   product: css  `
-    width: 100px;
+  border-radius: 20px;
+  width: 100px;
+  margin:5px;
+  `,
+  soldOutProduct: css `
+  border-radius: 20px;
+  width: 100px;
+  margin:5px;
+  background-color:gray;
   `,
   right: css  `
     width: 400px;
@@ -87,12 +95,12 @@ export default function Home() {
       items.push(
         <div
         key={value.id}
-          css={styles.product}
+          css={value.quantity > 0 ? styles.product :styles.soldOutProduct}
           onClick={() => {
-            setSelectedProduct(value.id);
+            value.quantity > 0 ? setSelectedProduct(value.id):"";
           }}
         >
-          <ShowProduct url={value.image} price={value.price}></ShowProduct>
+          <ShowProduct url={value.image} price={value.price} quantity={value.quantity}></ShowProduct>
         </div>
       );
     });
