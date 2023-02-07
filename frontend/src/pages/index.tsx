@@ -38,7 +38,6 @@ const styles = {
   border-radius: 20px;
   width: 100px;
   margin:5px;
-  background-color:gray;
   `,
   right: css  `
     width: 400px;
@@ -89,7 +88,7 @@ export default function Home() {
   }, []);
 
   const showList = () => {
-    const items: any = [];
+    const items: React.ReactNode[] = [];
 
     result.map((value) => {
       items.push(
@@ -138,7 +137,6 @@ export default function Home() {
   return (
     <>
       {/* ナビゲーション */}
-      <nav css={styles.nav}></nav>
       <main css={styles.main}>
         {/* 左側商品一覧 */}
         {showList()}

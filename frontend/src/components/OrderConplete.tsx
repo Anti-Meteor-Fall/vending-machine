@@ -36,7 +36,7 @@ const styles = {
 
 const OrderComplete = (props:any) => {
 
-  const [isorderEvent,setOrderEvent] = useRecoilState(orderState)
+  const [,setOrderEvent] = useRecoilState(orderState)
   const [selectedProduct,setSelectedProduct] = useRecoilState(productSelectState)
   console.log(selectedProduct)
 
@@ -48,12 +48,7 @@ if(sendValue.quantity -1 > 0){
 }
 else{
   sendValue.quantity = 0
-  sendValue.is_set = false
 }
-
-const dt = new Date(Date.now());
-const jdt = new Date(dt.getTime() + 9 * 60 * 60 * 1000);  // 9時間ずらす
-const isoStr = jdt.toISOString().split('Z')[0] + '000+09:00';
 
 
 fetch('http://127.0.0.1:8000/api/vending/products/'+sendValue.id, {
@@ -64,13 +59,7 @@ fetch('http://127.0.0.1:8000/api/vending/products/'+sendValue.id, {
   },
   body: JSON.stringify({
       "id": sendValue.id,
-      "name": sendValue.name,
-      "price": sendValue.price,
-      "image": sendValue.image,
-      "is_set": sendValue.is_set,
       "quantity": sendValue.quantity,
-      "created_at": sendValue.created_at,
-      "updated_at": isoStr
   
   })
 })
@@ -87,7 +76,10 @@ console.log(sendValue);
       gsap.to(".cover",{
         opacity:0,
         duration:1,
-        onComplete: ()=>setOrderEvent(-1)
+        onComplete: ()=>{
+          setOrderEvent(-1)
+          setSelectedProduct(-1)
+        }
       })
     }
     );
