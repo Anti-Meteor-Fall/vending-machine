@@ -1,4 +1,4 @@
-from .serializers import ProductSerializer, OrderMethodSerializer, OrderSerializer
+from .serializers import ProductlistSerializer, ProductSerializer, OrderMethodSerializer, OrderSerializer
 from .models import Product, Order_Method, Order
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
@@ -6,7 +6,7 @@ from rest_framework.permissions import AllowAny
 #id並べ替え
 class ProductListView(generics.ListAPIView):
     queryset = Product.objects.order_by('id')
-    serializer_class = ProductSerializer
+    serializer_class = ProductlistSerializer
     permissions_classes = (AllowAny,)
 
 

@@ -25,12 +25,20 @@ const styles = {
     justify-content: space-around;
   `,
   productList: css  `
-    width: 800px;
+    width: 880px;
     display: flex;
     flex-wrap: wrap;
   `,
   product: css  `
-    width: 100px;
+  border-radius: 20px;
+  width: 100px;
+  margin:5px;
+  `,
+  soldOutProduct: css `
+  border-radius: 20px;
+  width: 100px;
+  margin:5px;
+  background-color:gray;
   `,
   right: css  `
     width: 400px;
@@ -74,7 +82,7 @@ export default function Home() {
   const isorderEvent = useRecoilValue(orderState)
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/vending/productslist/?format=json")
+    fetch("http://127.0.0.1:8000/api/vending/productslist/")
       .then((responce) => responce.json())
       .then((res) => setResult(res.slice(0, 24)))
       .catch((err) => setError(err));
@@ -86,12 +94,13 @@ export default function Home() {
     result.map((value) => {
       items.push(
         <div
-          css={styles.product}
+        key={value.id}
+          css={value.quantity > 0 ? styles.product :styles.soldOutProduct}
           onClick={() => {
-            setSelectedProduct(value.id);
+            value.quantity > 0 ? setSelectedProduct(value.id):"";
           }}
         >
-          <ShowProduct url={value.image} price={value.price}></ShowProduct>
+          <ShowProduct url={value.image} price={value.price} quantity={value.quantity}></ShowProduct>
         </div>
       );
     });
@@ -101,16 +110,17 @@ export default function Home() {
   const showSelectedProduct = () => {
     if (selectedProduct < 0) {
       return;
-    }
-    return (
-      <>
+    }else{
+      return (
+        <>
         <SelectedProduct
           url={result[selectedProduct - 1].image}
           name={result[selectedProduct - 1].name}
           price={result[selectedProduct - 1].price}
-        ></SelectedProduct>
+          ></SelectedProduct>
       </>
     );
+  }
   };
 
   // 商品選択してから10秒経過したら選択状態を解除
@@ -143,7 +153,7 @@ export default function Home() {
         </div>
 
         {/* 購入時の表示と処理 */}
-      {isorderEvent> 0 ?<OrderComplete></OrderComplete>:""}
+      {isorderEvent> 0 ?<OrderComplete json={result}></OrderComplete>:""}
 
       </main>
     </>

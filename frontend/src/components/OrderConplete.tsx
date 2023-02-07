@@ -1,13 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 /** @jsxImportSource @emotion/react */
-import { modalState } from "@/states/modalState";
 import { orderState } from "@/states/orderState";
 import { css } from "@emotion/react";
-import { duration } from "@mui/material";
 import gsap from "gsap";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import Vivus from "vivus";
+import { productSelectState } from "@/states/productSelectState";
+
 
 const styles = {
   cover: css `
@@ -34,9 +34,48 @@ const styles = {
   `
 };
 
-const OrderComplete = () => {
+const OrderComplete = (props:any) => {
 
   const [isorderEvent,setOrderEvent] = useRecoilState(orderState)
+  const [selectedProduct,setSelectedProduct] = useRecoilState(productSelectState)
+  console.log(selectedProduct)
+
+var sendValue = props.json
+sendValue = sendValue[selectedProduct-1]
+
+if(sendValue.quantity -1 > 0){
+  sendValue.quantity = sendValue.quantity -1
+}
+else{
+  sendValue.quantity = 0
+  sendValue.is_set = false
+}
+
+const dt = new Date(Date.now());
+const jdt = new Date(dt.getTime() + 9 * 60 * 60 * 1000);  // 9時間ずらす
+const isoStr = jdt.toISOString().split('Z')[0] + '000+09:00';
+
+
+fetch('http://127.0.0.1:8000/api/vending/products/'+sendValue.id, {
+  method: 'PUT',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+      "id": sendValue.id,
+      "name": sendValue.name,
+      "price": sendValue.price,
+      "image": sendValue.image,
+      "is_set": sendValue.is_set,
+      "quantity": sendValue.quantity,
+      "created_at": sendValue.created_at,
+      "updated_at": isoStr
+  
+  })
+})
+
+console.log(sendValue);
 
   useEffect(()=>{
     new Vivus("Layer-1", {
