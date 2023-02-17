@@ -154,7 +154,7 @@ export default function Home() {
         </div>
 
         {/* 購入時の表示と処理 */}
-      {isorderEvent> 0 ?<OrderComplete json={result}></OrderComplete>:""}
+      {isorderEvent > 0 ?<OrderComplete json={result}></OrderComplete>:""}
 
       </main>
     </>

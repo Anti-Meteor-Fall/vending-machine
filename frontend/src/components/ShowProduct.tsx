@@ -28,7 +28,7 @@ const styles = {
     width:150px;
     transform-origin: center bottom;
     transform: rotate(-60deg) translate(40px,0px);
-    z-index:20;
+    z-index:15;
   `
 };
 

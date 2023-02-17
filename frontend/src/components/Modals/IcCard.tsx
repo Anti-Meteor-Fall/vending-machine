@@ -10,6 +10,17 @@ cover: css `
   width:1000px;
   height:400px;
 `,
+cardList: css `
+  margin:20px;
+  width:400px;
+`,
+touch: css `
+  padding:20px 80px;
+  margin:10px;
+  width: 350px;
+  border: solid 10px gray;
+  border-radius:120px;
+`
 };
 
 const IdCard = () => {
@@ -21,7 +32,8 @@ const IdCard = () => {
       setOder(4)
       audio.play()
       }}>
-        <img src="http://127.0.0.1:8000/order_methods/order_method2.jpg"alt="" />
+        <img css={styles.cardList} src="http://127.0.0.1:8000/order_methods/order_method2.jpg"alt="" />
+        <img css={styles.touch} src="http://127.0.0.1:8000/images/icTouch.png"alt=""/>
       Touch 
     </div>
      
