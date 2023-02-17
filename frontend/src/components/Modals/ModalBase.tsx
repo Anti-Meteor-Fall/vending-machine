@@ -17,6 +17,7 @@ const styles = {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 15;
+    overflow: hidden;
   `,
   position: css `
     position: fixed;

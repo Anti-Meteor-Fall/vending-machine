@@ -61,7 +61,7 @@ const modalComponents = [
          { showModal > 0 && showModal <= 4 ? (
       <ModalBase
         innerModal={modalComponents[showModal - 1]}
-        setShowModal={(e: any) => setShowModal(e)}
+        setShowModal={(e: number) => setShowModal(e)}
       ></ModalBase>
     ) : null}
       <ul css={selectedProduct>0 ? styles.flex:styles.lockSelect}>

@@ -15,10 +15,13 @@ cover: css `
 
 const IdCard = () => {
   const setOder = useSetRecoilState(orderState)
-
+  const audio = new Audio("http://127.0.0.1:8000/sounds/id.mp3") //　コンストラクタでaudio要素を生成
 
   return (
-    <div css={styles.cover} onClick={()=>{setOder(3)}}>
+    <div css={styles.cover} onClick={()=>{
+      setOder(3)
+      audio.play()
+      }}>
       <img src="http://127.0.0.1:8000/order_methods/order_method4.png" alt="" />
       Touch
     </div>

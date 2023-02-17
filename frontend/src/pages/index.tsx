@@ -23,6 +23,9 @@ const styles = {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
   `,
   productList: css  `
     width: 880px;
@@ -43,7 +46,7 @@ const styles = {
     width: 400px;
   `,
   selected: css  `
-    background-color: #ccc;
+    background-color:#d5d7db;
     border-radius: 30px;
     width: 425px;
     height: 400px;
@@ -151,7 +154,7 @@ export default function Home() {
         </div>
 
         {/* 購入時の表示と処理 */}
-      {isorderEvent> 0 ?<OrderComplete json={result}></OrderComplete>:""}
+      {isorderEvent > 0 ?<OrderComplete json={result}></OrderComplete>:""}
 
       </main>
     </>
