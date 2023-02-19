@@ -5,7 +5,8 @@ from rest_framework.permissions import AllowAny
 
 #id並べ替え
 class ProductListView(generics.ListAPIView):
-    queryset = Product.objects.order_by('id')
+    #id並べ替え,is_set=tureのみ表示
+    queryset = Product.objects.order_by('id').filter(is_set=True)
     serializer_class = ProductlistSerializer
     permissions_classes = (AllowAny,)
 

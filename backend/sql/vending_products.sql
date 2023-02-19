@@ -5,7 +5,7 @@ BEGIN;
 -- vending_product
 DELETE FROM vending_product;
 insert into vending_product (name, price, image, is_set, quantity, created_at, updated_at) values ('アクエリアス', 160, 'products/aquarius1.png', TRUE, 10, current_timestamp, current_timestamp); --1
-insert into vending_product (name, price, image, is_set, quantity, created_at, updated_at) values ('アクエリアスゼロカロリー', 160, 'products/aquarius2.png', TRUE, 10, current_timestamp, current_timestamp); --2
+insert into vending_product (name, price, image, is_set, quantity, created_at, updated_at) values ('アクエリアスゼロカロリー', 160, 'products/aquarius2.png', FALSE, 10, current_timestamp, current_timestamp); --2
 insert into vending_product (name, price, image, is_set, quantity, created_at, updated_at) values ('アクエリアス経口補水液', 160, 'products/aquarius3.png', TRUE, 10, current_timestamp, current_timestamp); --3
 insert into vending_product (name, price, image, is_set, quantity, created_at, updated_at) values ('アクエリアス一日分のマルチビタミン', 160, 'products/aquarius4.png', TRUE, 10, current_timestamp, current_timestamp); --4
 insert into vending_product (name, price, image, is_set, quantity, created_at, updated_at) values ('アクエリアス乳酸菌ウォーター', 160, 'products/aquarius5.png', TRUE, 10, current_timestamp, current_timestamp); --5
