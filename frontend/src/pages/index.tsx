@@ -113,12 +113,13 @@ export default function Home() {
     if (selectedProduct < 0) {
       return;
     }else{
+      const find = result.find((u) => u.id === selectedProduct);
       return (
         <>
         <SelectedProduct
-          url={result[selectedProduct - 1].image}
-          name={result[selectedProduct - 1].name}
-          price={result[selectedProduct - 1].price}
+          url={find!.image}
+          name={find!.name}
+          price={find!.price}
           ></SelectedProduct>
       </>
     );
