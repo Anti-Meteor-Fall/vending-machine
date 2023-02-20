@@ -33,33 +33,42 @@ const styles = {
     // -webkit-text-stroke: 2px black;
   `
 };
+type resultProps = {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  is_set: boolean;
+  quantity: number;
+  created_at: string;
+  updated_at: string;
+};
 
-const OrderComplete = (props:any) => {
+const OrderComplete = (prop: any) => {
 
   const [,setOrderEvent] = useRecoilState(orderState)
   const [selectedProduct,setSelectedProduct] = useRecoilState(productSelectState)
   console.log(selectedProduct)
 
-var sendValue = props.json
-sendValue = sendValue[selectedProduct-1]
+  let sendValue = prop.json.find((u: { id: number; }) => u.id === selectedProduct);
 
-if(sendValue.quantity -1 > 0){
-  sendValue.quantity = sendValue.quantity -1
+if(sendValue!.quantity -1 > 0){
+  sendValue!.quantity = sendValue!.quantity -1
 }
 else{
-  sendValue.quantity = 0
+  sendValue!.quantity = 0
 }
 
 
-fetch('http://127.0.0.1:8000/api/vending/products/'+sendValue.id, {
+fetch('http://127.0.0.1:8000/api/vending/products/'+sendValue!.id, {
   method: 'PUT',
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-      "id": sendValue.id,
-      "quantity": sendValue.quantity,
+      "id": sendValue!.id,
+      "quantity": sendValue!.quantity,
   
   })
 })
