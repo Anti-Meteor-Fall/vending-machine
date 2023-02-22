@@ -29,7 +29,7 @@ const IdCard = () => {
 
   return (
     <div css={styles.cover} onClick={()=>{
-      setOder(4)
+      setOder(2)
       audio.play()
       }}>
         <img css={styles.cardList} src="http://127.0.0.1:8000/order_methods/order_method2.jpg"alt="" />

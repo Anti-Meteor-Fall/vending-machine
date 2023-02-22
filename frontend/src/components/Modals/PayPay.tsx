@@ -2,7 +2,6 @@
 /** @jsxImportSource @emotion/react */
 import { orderState } from "@/states/orderState";
 import { css } from "@emotion/react";
-import { style } from "@mui/system";
 import { useSetRecoilState } from "recoil";
 
 const styles = {

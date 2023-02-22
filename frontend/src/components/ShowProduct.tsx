@@ -20,8 +20,10 @@ const styles = {
     filter: grayscale(100%);
   `,
   productInfo: css  `
+    width:50px;
     margin-top: 8px;
     text-align: center;
+    font-family: 'Noto Sans JP', sans-serif;
   `,
   soldOut: css `
     position: absolute;

@@ -19,7 +19,7 @@ const IdCard = () => {
 
   return (
     <div css={styles.cover} onClick={()=>{
-      setOder(3)
+      setOder(4)
       audio.play()
       }}>
       <img src="http://127.0.0.1:8000/order_methods/order_method4.png" alt="" />
