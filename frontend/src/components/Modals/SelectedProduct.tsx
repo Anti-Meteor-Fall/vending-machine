@@ -31,8 +31,13 @@ const styles = {
     justify-content: center;
   `,
 };
+type propType ={
+  name:string,
+  url:string,
+  price:number
+}
 
-const SelectedProduct = (props: any) => {
+const SelectedProduct = (props: propType) => {
   return (
     <>
       <div css={styles.cover}>

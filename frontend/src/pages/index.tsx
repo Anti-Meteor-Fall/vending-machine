@@ -4,6 +4,7 @@ import OrderComplete from "@/components/OrderConplete";
 import PayList from "@/components/PayList";
 import ShowProduct from "@/components/ShowProduct";
 import { orderState } from "@/states/orderState";
+import { productList } from "@/states/productList";
 import { productSelectState } from "@/states/productSelectState";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
@@ -63,20 +64,8 @@ const styles = {
   showItem: css  ``,
 };
 
-type resultProps = {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  is_set: boolean;
-  quantity: number;
-  created_at: string;
-  updated_at: string;
-};
-
 export default function Home() {
-  const [result, setResult] = useState<resultProps[]>([]);
-  const [error, setError] = useState({});
+  const [result, setResult] = useRecoilState(productList);
 
   // 選択された商品
   const [selectedProduct, setSelectedProduct] = useRecoilState(productSelectState);
@@ -87,8 +76,8 @@ export default function Home() {
     fetch("http://127.0.0.1:8000/api/vending/productslist/")
       .then((responce) => responce.json())
       .then((res) => setResult(res.slice(0, 24)))
-      .catch((err) => setError(err));
-  }, []);
+      .catch((err) => console.log(err));
+  }, [setResult]);
 
   const showList = () => {
     const items: React.ReactNode[] = [];
@@ -113,12 +102,13 @@ export default function Home() {
     if (selectedProduct < 0) {
       return;
     }else{
+      const find = result.find((u) => u.id === selectedProduct);
       return (
         <>
         <SelectedProduct
-          url={result[selectedProduct - 1].image}
-          name={result[selectedProduct - 1].name}
-          price={result[selectedProduct - 1].price}
+          url={find!.image}
+          name={find!.name}
+          price={find!.price}
           ></SelectedProduct>
       </>
     );
@@ -152,9 +142,8 @@ export default function Home() {
             <PayList></PayList>
           </div>
         </div>
-
         {/* 購入時の表示と処理 */}
-      {isorderEvent > 0 ?<OrderComplete json={result}></OrderComplete>:""}
+      {isorderEvent > 0 ?<OrderComplete></OrderComplete>:""}
 
       </main>
     </>
