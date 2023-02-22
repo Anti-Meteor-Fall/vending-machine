@@ -33,6 +33,17 @@ const styles = {
     // -webkit-text-stroke: 2px black;
    `,
 };
+type resultProps = {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  is_set: boolean;
+  quantity: number;
+  created_at: string;
+  updated_at: string;
+};
+
 
 const OrderComplete = () => {
   const [result] = useRecoilState(productList);
@@ -50,6 +61,7 @@ const OrderComplete = () => {
     quantity = 0;
   }
 
+
   fetch("http://127.0.0.1:8000/api/vending/products/" + sendValue!.id, {
     method: "PUT",
     headers: {
@@ -59,7 +71,6 @@ const OrderComplete = () => {
     body: JSON.stringify({
       id: sendValue!.id,
       quantity: quantity,
-
     }),
   });
   fetch("http://127.0.0.1:8000/api/vending/orders/", {
