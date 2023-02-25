@@ -73,11 +73,13 @@ export default function Home() {
   const isorderEvent = useRecoilValue(orderState)
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/vending/productslist/")
+    if(isorderEvent==-1){
+      fetch("http://127.0.0.1:8000/api/vending/productslist/")
       .then((responce) => responce.json())
       .then((res) => setResult(res.slice(0, 24)))
       .catch((err) => console.log(err));
-  }, [setResult]);
+    }
+  }, [isorderEvent]);
 
   const showList = () => {
     const items: React.ReactNode[] = [];
