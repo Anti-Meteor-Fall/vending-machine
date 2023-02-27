@@ -8,6 +8,7 @@ import { useRecoilState } from "recoil";
 import Vivus from "vivus";
 import { productSelectState } from "@/states/productSelectState";
 import { productList } from "@/states/productList";
+import { postOrderMethod, putProductQuantity } from "@/pages/api/vending";
 
 const styles = {
   cover: css `
@@ -22,25 +23,22 @@ const styles = {
     align-items: center;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 100;
-   `,
+  `,
   rect: css `
     width: 400px;
     height: 400px;
-   `,
+  `,
   text: css `
-    text-align:center;
+    text-align: center;
     font-size: 5rem;
     color: white;
-   `,
+  `,
 };
-
 
 const OrderComplete = () => {
   const [result] = useRecoilState(productList);
   const [orderEvent, setOrderEvent] = useRecoilState(orderState);
-  const [selectedProduct, setSelectedProduct] =
-    useRecoilState(productSelectState);
-  console.log(selectedProduct);
+  const [selectedProduct, setSelectedProduct] =useRecoilState(productSelectState);
 
   let sendValue = result.find((u: { id: number }) => u.id === selectedProduct);
   let quantity;
@@ -51,29 +49,12 @@ const OrderComplete = () => {
     quantity = 0;
   }
 
+  // バックエンドへ商品在庫の送信
+  putProductQuantity(sendValue!.id,quantity)
+  
+  // バックエンドへ購入方法の送信
+  postOrderMethod(sendValue!.id,orderEvent)
 
-  fetch("http://127.0.0.1:8000/api/vending/products/" + sendValue!.id, {
-    method: "PUT",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id: sendValue!.id,
-      quantity: quantity,
-    }),
-  });
-  fetch("http://127.0.0.1:8000/api/vending/orders/", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      product_id: sendValue!.id,
-      order_method_id: orderEvent,
-    }),
-  });
 
   useEffect(() => {
     new Vivus(
@@ -95,10 +76,14 @@ const OrderComplete = () => {
         });
       }
     );
-  },[setOrderEvent, setSelectedProduct]);
+  }, [setOrderEvent, setSelectedProduct]);
   return (
     <div css={styles.cover} className="cover">
-      <div css={styles.text}>ご購入<br/>ありがとうございました</div>
+      <div css={styles.text}>
+        ご購入
+        <br />
+        ありがとうございました
+      </div>
       <div css={styles.rect}>
         <svg height="100%" width="100%">
           <defs />

@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { useRecoilState } from "recoil";
 import { modalState } from "@/states/modalState";
 import { orderState } from "@/states/orderState";
+import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
 
 const styles = {
   cover: css `
@@ -38,7 +39,10 @@ const styles = {
   `,
 };
 
-const ModalBase = (props: any) => {
+type prop ={
+  innerModal:EmotionJSX.Element
+}
+const ModalBase = (props: prop) => {
 
   const [,setShowModal] = useRecoilState(modalState);
   const [oederState,] = useRecoilState(orderState);

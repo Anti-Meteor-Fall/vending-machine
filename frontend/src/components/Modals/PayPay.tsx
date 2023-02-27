@@ -39,7 +39,7 @@ const PayPay = () => {
         <div>
           <img
             src="http://127.0.0.1:8000/order_methods/order_method3.jpg"
-            alt=""
+            alt="paypay"
             css={styles.paypayImg}
           />
         </div>
@@ -47,7 +47,7 @@ const PayPay = () => {
           <img
             css={styles.qr}
             src="http://127.0.0.1:8000/images/qrSample.jpeg"
-            alt=""
+            alt="paypay QRコード"
           />
         </div>
       </div>

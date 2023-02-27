@@ -8,7 +8,8 @@ import { useRecoilState } from "recoil";
 type prop = {
   "url":string,
   "price":number,
-  "quantity":number
+  "quantity":number,
+  "name":string
 }
 
 const ShowProduct = (props: prop) => {
@@ -21,6 +22,9 @@ const ShowProduct = (props: prop) => {
       width: auto;
       height: 170px;
       position:relative;
+      &:hover {
+         cursor:pointer; 
+        }
     `,
     showImg:darkMode? css  `
       width: auto;
@@ -59,7 +63,7 @@ const ShowProduct = (props: prop) => {
   };
   // 売り切れ表示
   const showSoldOut = ( <>
-    < img css={styles.soldOut} src="http://127.0.0.1:8000/images/soldOut.png" alt="" />
+    < img css={styles.soldOut} src="http://127.0.0.1:8000/images/soldOut.png" alt="SOLD OUT" />
   </>)
 
   return (
@@ -68,7 +72,7 @@ const ShowProduct = (props: prop) => {
       <div css={styles.coverImg}>
        {props.quantity == 0 ? showSoldOut:""}
         <div css={props.quantity == 0 ? styles.showImgGray :styles.showImg }>
-          <img src={props.url} alt="" css={styles.showImg} />
+          <img src={props.url} alt={props.name} css={styles.showImg} />
         </div>
         <div css={styles.productInfo}>
           {props.price}円

@@ -32,8 +32,8 @@ const IdCard = () => {
       setOder(2)
       audio.play()
       }}>
-        <img css={styles.cardList} src="http://127.0.0.1:8000/order_methods/order_method2.jpg"alt="" />
-        <img css={styles.touch} src="http://127.0.0.1:8000/images/icTouch.png"alt=""/>
+        <img css={styles.cardList} src="http://127.0.0.1:8000/order_methods/order_method2.jpg"alt="交通ICカード一覧" />
+        <img css={styles.touch} src="http://127.0.0.1:8000/images/icTouch.png"alt="ICタッチ"/>
     </div>
      
 
