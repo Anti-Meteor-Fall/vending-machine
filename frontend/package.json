@@ -25,6 +25,7 @@
     "react-dom": "18.2.0",
     "recoil": "^0.7.6",
     "typescript": "4.9.4",
+    "use-media": "^1.4.0",
     "vivus": "^0.4.6"
   },
   "devDependencies": {

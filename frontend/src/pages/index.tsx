@@ -1,33 +1,53 @@
 /** @jsxImportSource @emotion/react */
+import IpadSelected from "@/components/Modals/IpadSelected";
 import SelectedProduct from "@/components/Modals/SelectedProduct";
 import OrderComplete from "@/components/OrderConplete";
 import PayList from "@/components/PayList";
 import ShowProduct from "@/components/ShowProduct";
+import { darkModeState } from "@/states/darkModeState";
+import { ipadSelectedProduct } from "@/states/ipadSelectedProduct";
 import { orderState } from "@/states/orderState";
 import { productList } from "@/states/productList";
 import { productSelectState } from "@/states/productSelectState";
 import { css } from "@emotion/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {  useRecoilState, useRecoilValue } from "recoil";
+import useMedia from "use-media";
 
-const styles = {
-  nav: css  `
-    background-color: gray;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 50px;
-    position: fixed;
-  `,
-  main: css  `
+
+export default function Home() {
+  const [result, setResult] = useRecoilState(productList);
+
+  // 選択された商品
+  const [selectedProduct, setSelectedProduct] = useRecoilState(productSelectState);
+  const [darkMode] = useRecoilState(darkModeState);
+
+  // pcサイズで選択された商品
+  const [isorderEvent,setIsOrderEvent] = useRecoilState(orderState)
+  // ipadサイズで選択された商品
+  const [ipadSelected,setIpadSelected] = useRecoilState(ipadSelectedProduct)
+  
+
+  // レスポンシブの範囲
+  const isWide = useMedia({minWidth: "1030px"})
+
+  const styles = {
+
+  main:darkMode? css `
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #121315;
+  `: 
+  css `
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
     background-color: #8EC5FC;
     background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-
-  `,
+`,
   productList: css  `
     width: 880px;
     display: flex;
@@ -61,16 +81,7 @@ const styles = {
     justify-content: center;
     margin: 5px;
   `,
-  showItem: css  ``,
 };
-
-export default function Home() {
-  const [result, setResult] = useRecoilState(productList);
-
-  // 選択された商品
-  const [selectedProduct, setSelectedProduct] = useRecoilState(productSelectState);
-
-  const isorderEvent = useRecoilValue(orderState)
 
   useEffect(() => {
     if(isorderEvent==-1){
@@ -79,7 +90,7 @@ export default function Home() {
       .then((res) => setResult(res.slice(0, 24)))
       .catch((err) => console.log(err));
     }
-  }, [isorderEvent]);
+  }, [isorderEvent, setResult]);
 
   const showList = () => {
     const items: React.ReactNode[] = [];
@@ -90,7 +101,13 @@ export default function Home() {
         key={value.id}
           css={value.quantity > 0 ? styles.product :styles.soldOutProduct}
           onClick={() => {
-            value.quantity > 0 ? setSelectedProduct(value.id):"";
+            if(isWide){
+              value.quantity > 0 ? setSelectedProduct(value.id):""
+            }else{
+              value.quantity > 0 ? setSelectedProduct(value.id):""
+
+              value.quantity > 0 ? setIpadSelected(value.id):""
+            }
           }}
         >
           <ShowProduct url={value.image} price={value.price} quantity={value.quantity}></ShowProduct>
@@ -116,6 +133,19 @@ export default function Home() {
     );
   }
   };
+  const showRightSelect = ()=>{
+    return(
+
+      <div css={styles.right}>
+    <div css={styles.selected}>
+      <div>{showSelectedProduct()}</div>
+    </div>
+    <div css={styles.payList}>
+      <PayList></PayList>
+    </div>
+  </div>
+      )
+  }
 
   // 商品選択してから10秒経過したら選択状態を解除
   // useEffect(() => {
@@ -136,17 +166,11 @@ export default function Home() {
         {/* 左側商品一覧 */}
         {showList()}
         {/* 右側　選択商品と支払い一覧 */}
-        <div css={styles.right}>
-          <div css={styles.selected}>
-            <div css={styles.showItem}>{showSelectedProduct()}</div>
-          </div>
-          <div css={styles.payList}>
-            <PayList></PayList>
-          </div>
-        </div>
+        {isWide ? showRightSelect():""}
         {/* 購入時の表示と処理 */}
       {isorderEvent > 0 ?<OrderComplete></OrderComplete>:""}
-
+      {ipadSelected > 0 ?<IpadSelected></IpadSelected>:""}
+      
       </main>
     </>
   );

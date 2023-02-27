@@ -9,6 +9,7 @@ import PayPay from "./Modals/PayPay";
 import { useRecoilState } from "recoil";
 import { modalState } from "@/states/modalState";
 import { productSelectState } from "@/states/productSelectState";
+import { ipadSelectedProduct } from "@/states/ipadSelectedProduct";
 
 
 
@@ -44,6 +45,7 @@ const PayList = () => {
 
 const [showModal,setShowModal] = useRecoilState(modalState);
 const [selectedProduct,setSelectedProduct] = useRecoilState(productSelectState)
+const [ipadSelected,setIpadSelected] = useRecoilState(ipadSelectedProduct)
 
 
 
@@ -61,10 +63,9 @@ const modalComponents = [
          { showModal > 0 && showModal <= 4 ? (
       <ModalBase
         innerModal={modalComponents[showModal - 1]}
-        setShowModal={(e: number) => setShowModal(e)}
       ></ModalBase>
     ) : null}
-      <ul css={selectedProduct>0 ? styles.flex:styles.lockSelect}>
+      <ul css={selectedProduct>0 ? styles.flex:ipadSelected?styles.flex :styles.lockSelect}>
         <li css={styles.payButton}>
           <Button variant="contained" size="large" sx={buttonProp} onClick={()=>{setShowModal(1)}}>
             現金

@@ -1,44 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 /** @jsxImportSource @emotion/react */
+import { darkModeState } from "@/states/darkModeState";
 import { css } from "@emotion/react";
-import { type } from "os";
+import { useRecoilState } from "recoil";
 
-const styles = {
-  coverImg: css  `
-    margin: 30px;
-    width: auto;
-    height: 150px;
-    position:relative;
-  `,
-  showImg: css  `
-    width: auto;
-    height: 150px;
-  `,
-  showImgGray: css `
-    width: auto;
-    height: 150px;
-    filter: grayscale(100%);
-  `,
-  productInfo: css  `
-    width:50px;
-    margin-top: 8px;
-    text-align: center;
-    font-family: 'Noto Sans JP', sans-serif;
-  `,
-  soldOut: css `
-    position: absolute;
-    width:200px;
-    width:150px;
-    transform-origin: center bottom;
-    transform: rotate(-60deg) translate(40px,0px);
-    z-index:15;
-  `
-};
-
-// 売り切れ表示
-const showSoldOut = ( <>
-  < img css={styles.soldOut} src="http://127.0.0.1:8000/images/soldOut.png" alt="" />
-</>)
 
 type prop = {
   "url":string,
@@ -47,6 +12,56 @@ type prop = {
 }
 
 const ShowProduct = (props: prop) => {
+  const [darkMode] = useRecoilState(darkModeState);
+
+
+  const styles = {
+    coverImg: css  `
+      margin: 30px;
+      width: auto;
+      height: 170px;
+      position:relative;
+    `,
+    showImg:darkMode? css  `
+      width: auto;
+      height: 100%;
+      filter: drop-shadow(0px 0px 4px #00fff6);
+    `:
+    css `
+      width: auto;
+      height: 150px;
+    `,
+    showImgGray: css `
+      width: auto;
+      height: 100%;
+      filter: grayscale(100%);
+    `,
+    productInfo:darkMode? css  `
+      width:50px;
+      margin-top: 8px;
+      text-align: center;
+      color:#fff;
+      font-family: 'Noto Sans JP', sans-serif;
+    `:
+    css `
+      width:50px;
+      margin-top: 8px;
+      text-align: center;
+      font-family: 'Noto Sans JP', sans-serif;
+    `,
+    soldOut: css `
+      position: absolute;
+      height:100%;
+      transform-origin: center bottom;
+      transform: rotate(-60deg) translate(45px,0px);
+      z-index:15;
+    `
+  };
+  // 売り切れ表示
+  const showSoldOut = ( <>
+    < img css={styles.soldOut} src="http://127.0.0.1:8000/images/soldOut.png" alt="" />
+  </>)
+
   return (
     <>
      

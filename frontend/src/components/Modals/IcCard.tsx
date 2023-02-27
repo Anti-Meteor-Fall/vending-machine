@@ -34,7 +34,6 @@ const IdCard = () => {
       }}>
         <img css={styles.cardList} src="http://127.0.0.1:8000/order_methods/order_method2.jpg"alt="" />
         <img css={styles.touch} src="http://127.0.0.1:8000/images/icTouch.png"alt=""/>
-      Touch 
     </div>
      
 
