@@ -7,6 +7,3 @@ urlpatterns = [
     path('order-methods/', views.OrderMethodView.as_view(), name='order-methods'),
     path('orders/', views.OrderView.as_view(), name='orders'),
 ]
-
-
-    
