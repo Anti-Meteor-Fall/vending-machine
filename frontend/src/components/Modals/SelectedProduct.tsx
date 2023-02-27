@@ -42,7 +42,7 @@ const SelectedProduct = (props: propType) => {
     <>
       <div css={styles.cover}>
         <div css={styles.imgCover}>
-          <img src={props.url} alt="" css={styles.showImg} />
+          <img src={props.url} alt={props.name} css={styles.showImg} />
         </div>
         <div css={styles.productInfo}>
           {props.name}
