@@ -10,14 +10,19 @@ import { ipadSelectedProduct } from "@/states/ipadSelectedProduct";
 import { orderState } from "@/states/orderState";
 import { productList } from "@/states/productList";
 import { productSelectState } from "@/states/productSelectState";
+import { Product } from "@/types/api";
 import { css } from "@emotion/react";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import useMedia from "use-media";
+import { getProductList } from "./api/vending";
 
-export default function Home() {
+interface Props {
+  productListData: Product[];
+}
+
+export default function Home({ productListData }: Props) {
   const [result, setResult] = useRecoilState(productList);
-
   // 選択された商品
   const [selectedProduct, setSelectedProduct] =
     useRecoilState(productSelectState);
@@ -85,10 +90,7 @@ export default function Home() {
 
   useEffect( () => {
     if (isOrderEvent == -1) {
-      fetch("http://127.0.0.1:8000/api/vending/productslist/")
-        .then((responce) => responce.json())
-        .then((res) => setResult(res.slice(0, 24)))
-        .catch((err) => console.log(err));
+      setResult(productListData.slice(0, 24))
     }
   }, [isOrderEvent, setResult]);
 
@@ -178,3 +180,13 @@ export default function Home() {
     </>
   );
 }
+
+export const getStaticProps = async () => {
+  const productListData = await getProductList();
+  
+  return {
+    props : {
+      productListData
+    }
+  };
+};
