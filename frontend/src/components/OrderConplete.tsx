@@ -28,20 +28,10 @@ const styles = {
     height: 400px;
    `,
   text: css `
+    text-align:center;
     font-size: 5rem;
     color: white;
-    // -webkit-text-stroke: 2px black;
    `,
-};
-type resultProps = {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  is_set: boolean;
-  quantity: number;
-  created_at: string;
-  updated_at: string;
 };
 
 
@@ -85,8 +75,6 @@ const OrderComplete = () => {
     }),
   });
 
-  console.log(sendValue);
-
   useEffect(() => {
     new Vivus(
       "Layer-1",
@@ -107,10 +95,10 @@ const OrderComplete = () => {
         });
       }
     );
-  });
+  },[setOrderEvent, setSelectedProduct]);
   return (
     <div css={styles.cover} className="cover">
-      <div css={styles.text}>ご購入ありがとうございました</div>
+      <div css={styles.text}>ご購入<br/>ありがとうございました</div>
       <div css={styles.rect}>
         <svg height="100%" width="100%">
           <defs />

@@ -22,6 +22,7 @@ const styles = {
   position: css `
     position: fixed;
     width: auto;
+    max-width:80vw;
     height: auto;
     top: calc(50% - 800px);
     left: 50%;
@@ -39,8 +40,9 @@ const styles = {
 
 const ModalBase = (props: any) => {
 
-  const [showModal,setShowModal] = useRecoilState(modalState);
-  const [oederState,setOrderSate] = useRecoilState(orderState);
+  const [,setShowModal] = useRecoilState(modalState);
+  const [oederState,] = useRecoilState(orderState);
+
 
 
   // モーダル表示アニメーション
@@ -54,7 +56,7 @@ const ModalBase = (props: any) => {
 
   // モーダル非表示アニメーション
   const closeAnimetion = () => {
-    gsap.to(".cash", { y: 0, duration: 0.5 });
+    gsap.to(".cash", { y: -300, duration: 0.5 });
       gsap.to(".cashPopCover", {
         backgroundColor:oederState<0? "rgba(0,0,0,0)":"",
         duration: 0.5,
