@@ -3,8 +3,9 @@
 import { css } from "@emotion/react";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { orderState } from "@/states/orderState";
+import { cashInputValue } from "@/states/cashInputValue";
 
 const styles = {
   cover: css `
@@ -46,7 +47,7 @@ const styles = {
 };
 
 const Cash = () => {
-  const [inputValue, setInputValue] = useState<number>(0);
+  const [inputValue, setInputValue] = useRecoilState<number>(cashInputValue);
   const [isDragging, setIsDragging] = useState<number>(0);
   const [isDroppable, setIsDroppable] = useState(false);
 

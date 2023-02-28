@@ -36,12 +36,12 @@ const styles = {
 };
 
 const OrderComplete = () => {
-  const [result] = useRecoilState(productList);
+  const [result,setResult] = useRecoilState(productList);
   const [orderEvent, setOrderEvent] = useRecoilState(orderState);
   const [selectedProduct, setSelectedProduct] =useRecoilState(productSelectState);
 
   let sendValue = result.find((u: { id: number }) => u.id === selectedProduct);
-  let quantity;
+  let quantity: number;
 
   if (sendValue!.quantity - 1 > 0) {
     quantity = sendValue!.quantity - 1;
@@ -72,6 +72,18 @@ const OrderComplete = () => {
           onComplete: () => {
             setOrderEvent(-1);
             setSelectedProduct(-1);
+            setResult((prevState) =>
+            prevState.map((obj) => (obj.id === selectedProduct ? {
+              id: obj.id,
+              name: obj.name,
+              price: obj.price,
+              image: obj.image,
+              is_set: obj.is_set,
+              quantity: quantity,
+              created_at: obj.created_at,
+              updated_at: obj.updated_at,
+              } : obj))
+          );
           },
         });
       }

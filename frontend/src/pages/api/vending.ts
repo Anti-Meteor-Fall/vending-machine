@@ -1,6 +1,6 @@
 // 商品一覧の取得
 
-import { Product } from "@/types/api";
+import { Product, WeatherData } from "@/types/api";
 
 export const getProductList = async (): Promise<Product[]> => {
   const res = await fetch(new URL("http://127.0.0.1:8000/api/vending/productslist/"));
@@ -37,3 +37,11 @@ export const postOrderMethod = (product_id:number,order_method_id:number) =>{
     }),
   });
 }
+
+// 名古屋の天気情報取得
+export const getWeatherInfo = async (): Promise<WeatherData[]> => {
+  const res = await fetch(new URL("https://weather.tsukumijima.net/api/forecast/city/230010"));
+  const data: WeatherData[] = await res.json();
+ 
+  return data;
+};

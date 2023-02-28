@@ -2,6 +2,7 @@
 /** @jsxImportSource @emotion/react */
 import IpadSelected from "@/components/Modals/IpadSelected";
 import SelectedProduct from "@/components/Modals/SelectedProduct";
+import Navi from "@/components/Navi";
 import OrderComplete from "@/components/OrderComplete";
 import PayList from "@/components/PayList";
 import ShowProduct from "@/components/ShowProduct";
@@ -15,7 +16,7 @@ import { css } from "@emotion/react";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import useMedia from "use-media";
-import { getProductList } from "./api/vending";
+import { getProductList, getWeatherInfo } from "./api/vending";
 
 interface Props {
   productListData: Product[];
@@ -46,6 +47,8 @@ export default function Home({ productListData }: Props) {
           background-color: #121315;
         `
       : css `
+    padding-top:110px;
+
           height: 100vh;
           display: flex;
           align-items: center;
@@ -58,16 +61,24 @@ export default function Home({ productListData }: Props) {
       display: flex;
       flex-wrap: wrap;
     `,
-    product: css `
+    product:isWide? css `
       border-radius: 20px;
       width: 100px;
       margin: 5px;
-    `,
-    soldOutProduct: css `
+    `: css `
+    border-radius: 20px;
+    width: 100px;
+    margin: 15px;
+  `,
+    soldOutProduct:isWide? css `
       border-radius: 20px;
       width: 100px;
       margin: 5px;
-    `,
+    `: css `
+    border-radius: 20px;
+    width: 100px;
+    margin: 15px;
+  `,
     right: css `
       width: 400px;
     `,
@@ -92,7 +103,7 @@ export default function Home({ productListData }: Props) {
     if (isOrderEvent == -1) {
       setResult(productListData.slice(0, 24))
     }
-  }, [isOrderEvent, setResult]);
+  }, []);
 
   const showList = () => {
     const items: React.ReactNode[] = [];
@@ -168,9 +179,10 @@ export default function Home({ productListData }: Props) {
   return (
     <>
       {/* ナビゲーション */}
+      <Navi></Navi>
       <main css={styles.main}>
         {/* 左側商品一覧 */}
-        {showList()}
+          {showList()}
         {/* 右側　選択商品と支払い一覧 */}
         {isWide ? showRightSelect() : ""}
         {/* 購入時の表示と処理 */}
@@ -190,3 +202,4 @@ export const getStaticProps = async () => {
     }
   };
 };
+

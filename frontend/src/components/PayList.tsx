@@ -18,7 +18,7 @@ const styles = {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-  `,
+   `,
   lockSelect: css `
     display: flex;
     flex-wrap: wrap;
@@ -26,7 +26,7 @@ const styles = {
     justify-content: center;
     pointer-events: none;
     filter: grayscale(80%);
-  `,
+   `,
   payButton: css `
     height: 80px;
     min-width: 150px;
@@ -35,7 +35,7 @@ const styles = {
     align-items: center;
     justify-content: center;
     border-radius: 30px;
-  `,
+   `,
 };
 const buttonProp = { width: 120, padding: 2, margin: 2, zIndex: 10 };
 
@@ -45,7 +45,7 @@ const PayList = () => {
   const [ipadSelected] = useRecoilState(ipadSelectedProduct);
 
   // モーダルウィンドウ一覧
-  const modalComponents: EmotionJSX.Element[]= [
+  const modalComponents: EmotionJSX.Element[] = [
     <Cash key="1"></Cash>,
     <PayPay key="2"></PayPay>,
     <IdCard key="3"></IdCard>,
@@ -60,7 +60,11 @@ const PayList = () => {
       ) : null}
       <ul
         css={
-          selectedProduct > 0 ? styles.flex : (ipadSelected ? styles.flex: styles.lockSelect)
+          selectedProduct > 0
+            ? styles.flex
+            : ipadSelected
+            ? styles.lockSelect
+            : styles.flex
         }
       >
         <li css={styles.payButton}>
