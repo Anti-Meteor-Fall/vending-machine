@@ -4,7 +4,6 @@
 - フロントエンド
   - Next.js
   - TypeScript
-  - TailwindCSS
 - バックエンド
   - Django
 
