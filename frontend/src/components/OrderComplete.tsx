@@ -29,8 +29,10 @@ const styles = {
     height: 400px;
   `,
   text: css `
+    overflow-wrap: break-word;
+    word-break: keep-all;
     text-align: center;
-    font-size: 5rem;
+    font-size: 4.5rem;
     color: white;
   `,
 };
@@ -88,12 +90,11 @@ const OrderComplete = () => {
         });
       }
     );
-  }, [setOrderEvent, setSelectedProduct]);
+  }, [quantity, selectedProduct, setOrderEvent, setResult, setSelectedProduct]);
   return (
     <div css={styles.cover} className="cover">
       <div css={styles.text}>
         ご購入
-        <br />
         ありがとうございました
       </div>
       <div css={styles.rect}>

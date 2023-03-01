@@ -7,16 +7,16 @@ import { useSetRecoilState } from "recoil";
 const styles = {
 
 cover: css `
-  width:1000px;
-  height:400px;
+  max-width:1000px;
+  min-height:300px;
 `,
 cardList: css `
-  margin:20px;
-  width:400px;
+  margin:30px;
+  width:350px;
 `,
 touch: css `
   padding:20px 80px;
-  margin:10px;
+  margin:40px;
   width: 350px;
   border: solid 10px gray;
   border-radius:120px;

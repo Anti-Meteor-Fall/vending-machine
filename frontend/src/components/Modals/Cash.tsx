@@ -9,9 +9,9 @@ import { cashInputValue } from "@/states/cashInputValue";
 
 const styles = {
   cover: css `
-    width: 1000px;
-    height: 500px;
-    padding: 50px;
+    max-width: 1000px;
+    min-height: 500px;
+    padding: 20px;
   `,
   showInputValue: css `
     width: 200px;
@@ -24,16 +24,13 @@ const styles = {
     display: inline;
   `,
   inputHall: css `
-    position: fixed;
-    top: 15px;
-    right: 0;
     &:hover {
       cursor: pointer;
     }
   `,
   Conins: css `
     width: 400px;
-    margin: 20px;
+    margin: 0px;
     display: flex;
     flex-wrap: wrap;
     flex: auto;
@@ -44,6 +41,9 @@ const styles = {
       cursor: pointer;
     }
   `,
+  flex: css `
+    flex-wrap: wrap;
+    `
 };
 
 const Cash = () => {
@@ -103,6 +103,8 @@ const Cash = () => {
       <div draggable css={styles.showInputValue}>
         {inputValue + "円"}
       </div>
+      <div css={styles.flex}>
+
       <div
         onDragEnter={onDragEnter}
         onDragLeave={onDragLeave}
@@ -116,7 +118,7 @@ const Cash = () => {
         <img
           src="http://127.0.0.1:8000/images/coin_tounyuguchi.png"
           alt="硬貨投入口"
-          width={500}
+          width={400}
         />
       </div>
       <div css={styles.Conins}>
@@ -193,7 +195,9 @@ const Cash = () => {
           height={120}
         />
       </div>
+      </div>
       <div>
+
         <Button
           variant="contained"
           size="large"

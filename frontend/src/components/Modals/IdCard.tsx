@@ -7,10 +7,23 @@ import { useSetRecoilState } from "recoil";
 
 const styles = {
 
-cover: css `
-  width:1000px;
-  height:400px;
+cover: css`
+  max-width:700px;
+  min-height:400px;
+  align-content: center;
+  text-align: center
 `,
+cardOption: css`
+  width: 300px;
+  margin: 0 0 20px 0;
+`,
+touch: css`
+  width: 600px;
+  margin:35px;
+  &:hover {
+      cursor: pointer;
+    }
+`
 };
 
 const IdCard = () => {
@@ -22,7 +35,8 @@ const IdCard = () => {
       setOder(4)
       audio.play()
       }}>
-      <img src="http://127.0.0.1:8000/order_methods/order_method4.png" alt="クレジットカード一覧" />
+      <img css={styles.touch} src="http://127.0.0.1:8000/images/creditCardTouch.jpg" alt="クレジットカード一覧" />
+      <img css={styles.cardOption} src="http://127.0.0.1:8000/order_methods/order_method4.png" alt="クレジットカード一覧" />
     </div>
 
   );
