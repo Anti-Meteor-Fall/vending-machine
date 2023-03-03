@@ -24,7 +24,7 @@ const styles = {
 
 const PayPay = () => {
   const setOder = useSetRecoilState(orderState);
-  const audio = new Audio("http://127.0.0.1:8000/sounds/paypay.mp3"); //　コンストラクタでaudio要素を生成
+  const audio = new Audio("http://192.168.148.225:8000/sounds/paypay.mp3"); //　コンストラクタでaudio要素を生成
 
   return (
     <div
@@ -38,7 +38,7 @@ const PayPay = () => {
       <div css={styles.centerContent}>
         <div>
           <img
-            src="http://127.0.0.1:8000/order_methods/order_method3.jpg"
+            src="http://192.168.148.225:8000/order_methods/order_method3.jpg"
             alt="paypay"
             css={styles.paypayImg}
           />
@@ -46,7 +46,7 @@ const PayPay = () => {
         <div>
           <img
             css={styles.qr}
-            src="http://127.0.0.1:8000/images/qrSample.jpeg"
+            src="http://192.168.148.225:8000/images/qrSample.jpeg"
             alt="paypay QRコード"
           />
         </div>

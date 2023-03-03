@@ -67,7 +67,7 @@ const ShowProduct = (props: prop) => {
     <>
       <img
         css={styles.soldOut}
-        src="http://127.0.0.1:8000/images/soldOut.png"
+        src="http://192.168.148.225:8000/images/soldOut.png"
         alt="SOLD OUT"
       />
     </>

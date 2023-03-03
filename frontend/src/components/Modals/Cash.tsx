@@ -116,7 +116,7 @@ const Cash = () => {
         onClick={() => setInputValue(0)}
       >
         <img
-          src="http://127.0.0.1:8000/images/coin_tounyuguchi.png"
+          src="http://192.168.148.225:8000/images/coin_tounyuguchi.png"
           alt="硬貨投入口"
           width={400}
         />
@@ -129,7 +129,7 @@ const Cash = () => {
             onDragStart(e, 1);
           }}
           onDragEnd={onDragEnd}
-          src="http://127.0.0.1:8000/images/1yen.png"
+          src="http://192.168.148.225:8000/images/1yen.png"
           alt="一円"
           width={80}
           height={80}
@@ -141,7 +141,7 @@ const Cash = () => {
             onDragStart(e, 5);
           }}
           onDragEnd={onDragEnd}
-          src="http://127.0.0.1:8000/images/5yen.png"
+          src="http://192.168.148.225:8000/images/5yen.png"
           alt="五円"
           width={85}
           height={85}
@@ -153,7 +153,7 @@ const Cash = () => {
             onDragStart(e, 10);
           }}
           onDragEnd={onDragEnd}
-          src="http://127.0.0.1:8000/images/10yen.png"
+          src="http://192.168.148.225:8000/images/10yen.png"
           alt="十円"
           width={100}
           height={100}
@@ -165,7 +165,7 @@ const Cash = () => {
             onDragStart(e, 50);
           }}
           onDragEnd={onDragEnd}
-          src="http://127.0.0.1:8000/images/50yen.png"
+          src="http://192.168.148.225:8000/images/50yen.png"
           alt="五十円"
           width={90}
           height={90}
@@ -177,7 +177,7 @@ const Cash = () => {
             onDragStart(e, 100);
           }}
           onDragEnd={onDragEnd}
-          src="http://127.0.0.1:8000/images/100yen.png"
+          src="http://192.168.148.225:8000/images/100yen.png"
           alt="百円"
           width={100}
           height={100}
@@ -189,7 +189,7 @@ const Cash = () => {
             onDragStart(e, 500);
           }}
           onDragEnd={onDragEnd}
-          src="http://127.0.0.1:8000/images/500yen.png"
+          src="http://192.168.148.225:8000/images/500yen.png"
           alt="五百円"
           width={120}
           height={120}

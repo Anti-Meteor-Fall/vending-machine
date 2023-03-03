@@ -25,15 +25,15 @@ touch: css `
 
 const IdCard = () => {
   const setOder = useSetRecoilState(orderState)
-  const audio = new Audio("http://127.0.0.1:8000/sounds/ic.mp3") //　コンストラクタでaudio要素を生成
+  const audio = new Audio("http://192.168.148.225:8000/sounds/ic.mp3") //　コンストラクタでaudio要素を生成
 
   return (
     <div css={styles.cover} onClick={()=>{
       setOder(2)
       audio.play()
       }}>
-        <img css={styles.cardList} src="http://127.0.0.1:8000/order_methods/order_method2.jpg"alt="交通ICカード一覧" />
-        <img css={styles.touch} src="http://127.0.0.1:8000/images/icTouch.png"alt="ICタッチ"/>
+        <img css={styles.cardList} src="http://192.168.148.225:8000/order_methods/order_method2.jpg"alt="交通ICカード一覧" />
+        <img css={styles.touch} src="http://192.168.148.225:8000/images/icTouch.png"alt="ICタッチ"/>
     </div>
      
 

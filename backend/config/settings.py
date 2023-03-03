@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-+zzm!nxtzgh*%vb064$@7)hn!1^m(00n*%hzf7+$!4sh(pe23p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ '*' ]
 
 
 # Application definition
@@ -146,6 +146,7 @@ CORS_ALLOW_HEADERS = (
 # localhost:3000からのアクセスを許可する
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000/",
+    "*",
 ]
 
 MEDIA_URL = ''
