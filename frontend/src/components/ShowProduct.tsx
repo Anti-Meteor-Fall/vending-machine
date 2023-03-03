@@ -15,7 +15,7 @@ const ShowProduct = (props: prop) => {
   const [darkMode] = useRecoilState(darkModeState);
 
   const styles = {
-    coverImg: css`
+    coverImg: css `
       margin: 30px 50px;
       width: auto;
       height: 170px;
@@ -23,53 +23,52 @@ const ShowProduct = (props: prop) => {
       &:hover {
         cursor: pointer;
       }
-    `,
+     `,
     showImg: darkMode
-      ? css`
+      ? css `
           width: auto;
           height: 150px;
           filter: drop-shadow(0px 0px 4px #00fff6);
-        `
-      : css`
+         `
+      : css `
           width: auto;
           height: 150px;
-        `,
-    showImgGray: css`
+         `,
+    showImgGray: css `
       width: auto;
       height: 150px;
       filter: grayscale(100%);
-
-    `,
+     `,
     productInfo: darkMode
-      ? css`
+      ? css `
           width: 50px;
           margin-top: 8px;
           text-align: center;
           color: #fff;
           font-family: "Noto Sans JP", sans-serif;
-        `
-      : css`
+         `
+      : css `
           width: 50px;
           margin-top: 8px;
           text-align: center;
           font-family: "Noto Sans JP", sans-serif;
-        `,
-    soldOut: css`
+         `,
+    soldOut: css `
       position: absolute;
       height: 90%;
       transform-origin: center bottom;
       transform: rotate(-60deg) translate(45px, 0px);
       z-index: 10;
-    `,
+     `,
   };
   // 売り切れ表示
+  
+  const imgSrc =  `http://${process.env.NEXT_PUBLIC_HOST_ADDRES}:8000/images/soldOut.png`;
+  
+  
   const showSoldOut = (
     <>
-      <img
-        css={styles.soldOut}
-        src="http://192.168.148.225:8000/images/soldOut.png"
-        alt="SOLD OUT"
-      />
+      <img css={styles.soldOut} src={imgSrc} alt="SOLD OUT" />
     </>
   );
 
