@@ -14,6 +14,7 @@ import { productSelectState } from "@/states/productSelectState";
 import { Product } from "@/types/api";
 import { css } from "@emotion/react";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useRecoilState } from "recoil";
 import useMedia from "use-media";
 import { getProductList, getWeatherInfo } from "./api/vending";
@@ -45,9 +46,9 @@ export default function Home({ productListData }: Props) {
           align-items: center;
           justify-content: space-around;
           background-color: #121315;
-        `
+         `
       : css `
-    padding-top:110px;
+          padding-top: 110px;
 
           height: 100vh;
           display: flex;
@@ -55,41 +56,45 @@ export default function Home({ productListData }: Props) {
           justify-content: space-around;
           // background-color: #8ec5fc;
           // background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
-          background: linear-gradient(220.55deg, #7CF7FF 0%, #4B73FF 100%);
-        `,
+          background: linear-gradient(220.55deg, #7cf7ff 0%, #4b73ff 100%);
+         `,
     productList: css `
       width: 880px;
       display: flex;
       flex-wrap: wrap;
-    `,
-    product:isWide? css `
-      border-radius: 20px;
-      width: 100px;
-      margin: 5px;
-    `: css `
-    border-radius: 20px;
-    width: 100px;
-    margin: 15px;
-  `,
-    soldOutProduct:isWide? css `
-      border-radius: 20px;
-      width: 100px;
-      margin: 5px;
-    `: css `
-    border-radius: 20px;
-    width: 100px;
-    margin: 15px;
-  `,
+     `,
+    product: isWide
+      ? css `
+          border-radius: 20px;
+          width: 100px;
+          margin: 5px;
+         `
+      : css `
+          border-radius: 20px;
+          width: 100px;
+          margin: 15px;
+         `,
+    soldOutProduct: isWide
+      ? css `
+          border-radius: 20px;
+          width: 100px;
+          margin: 5px;
+         `
+      : css `
+          border-radius: 20px;
+          width: 100px;
+          margin: 15px;
+         `,
     right: css `
       width: 400px;
-    `,
+     `,
     selected: css `
       background-color: #d5d7db;
       border-radius: 30px;
       width: 425px;
       height: 400px;
       margin-bottom: 10px;
-    `,
+     `,
     payList: css `
       width: 400px;
       height: 200px;
@@ -97,12 +102,12 @@ export default function Home({ productListData }: Props) {
       align-items: center;
       justify-content: center;
       margin: 5px;
-    `,
+     `,
   };
 
-  useEffect( () => {
+  useEffect(() => {
     if (isOrderEvent == -1) {
-      setResult(productListData.slice(0, 24))
+      setResult(productListData.slice(0, 24));
     }
   }, []);
 
@@ -179,11 +184,19 @@ export default function Home({ productListData }: Props) {
   // }, [selectedProduct]);
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <link rel="icon" type="image/png" sizes="32x32" href="https://www.hal.ac.jp/extra_assets/img/hal/14_HAL_1712.png"></link>
+        <link rel="apple-touch-icon" sizes="128x128" href="https://www.hal.ac.jp/extra_assets/img/hal/14_HAL_1712.png"></link>
+        <title>HEW Vending-Machine</title>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+      </Helmet>
       {/* ナビゲーション */}
       <Navi></Navi>
       <main css={styles.main}>
         {/* 左側商品一覧 */}
-          {showList()}
+        {showList()}
         {/* 右側　選択商品と支払い一覧 */}
         {isWide ? showRightSelect() : ""}
         {/* 購入時の表示と処理 */}
@@ -196,11 +209,10 @@ export default function Home({ productListData }: Props) {
 
 export const getStaticProps = async () => {
   const productListData = await getProductList();
-  
+
   return {
-    props : {
-      productListData
-    }
+    props: {
+      productListData,
+    },
   };
 };
-

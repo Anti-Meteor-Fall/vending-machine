@@ -53,11 +53,11 @@ export const postOrderMethod = (
 };
 
 // 名古屋の天気情報取得
-export const getWeatherInfo = async (): Promise<WeatherData[]> => {
+export const getWeatherInfo = async (): Promise<WeatherData> => {
   const res = await fetch(
     new URL("https://weather.tsukumijima.net/api/forecast/city/230010")
   );
-  const data: WeatherData[] = await res.json();
+  const data: WeatherData = await res.json();
 
 
   return data;
