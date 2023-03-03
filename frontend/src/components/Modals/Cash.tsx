@@ -8,12 +8,12 @@ import { orderState } from "@/states/orderState";
 import { cashInputValue } from "@/states/cashInputValue";
 
 const styles = {
-  cover: css `
+  cover: css`
     max-width: 1000px;
     min-height: 500px;
     padding: 20px;
   `,
-  showInputValue: css `
+  showInputValue: css`
     width: 200px;
     font-size: 3rem;
     font-family: "Orbitron", sans-serif;
@@ -23,12 +23,12 @@ const styles = {
     padding: 10px;
     display: inline;
   `,
-  inputHall: css `
+  inputHall: css`
     &:hover {
       cursor: pointer;
     }
   `,
-  Conins: css `
+  Conins: css`
     width: 400px;
     margin: 0px;
     display: flex;
@@ -36,14 +36,14 @@ const styles = {
     flex: auto;
     align-items: center;
   `,
-  coin: css `
+  coin: css`
     &:hover {
       cursor: pointer;
     }
   `,
-  flex: css `
+  flex: css`
     flex-wrap: wrap;
-    `
+  `,
 };
 
 const Cash = () => {
@@ -98,106 +98,106 @@ const Cash = () => {
   };
   const buttonProp = { width: 120, padding: 2, margin: 2, zIndex: 10 };
 
+  
+
   return (
     <div css={styles.cover}>
       <div draggable css={styles.showInputValue}>
         {inputValue + "円"}
       </div>
       <div css={styles.flex}>
-
-      <div
-        onDragEnter={onDragEnter}
-        onDragLeave={onDragLeave}
-        onDragOver={(e) => {
-          e.preventDefault(); // これがないとdropイベントが発火しない
-        }}
-        onDrop={onDrop}
-        css={styles.inputHall}
-        onClick={() => setInputValue(0)}
-      >
-        <img
-          src="http://127.0.0.1:8000/images/coin_tounyuguchi.png"
-          alt="硬貨投入口"
-          width={400}
-        />
-      </div>
-      <div css={styles.Conins}>
-        <img
-          css={styles.coin}
-          draggable
-          onDragStart={(e) => {
-            onDragStart(e, 1);
+        <div
+          onDragEnter={onDragEnter}
+          onDragLeave={onDragLeave}
+          onDragOver={(e) => {
+            e.preventDefault(); // これがないとdropイベントが発火しない
           }}
-          onDragEnd={onDragEnd}
-          src="http://127.0.0.1:8000/images/1yen.png"
-          alt="一円"
-          width={80}
-          height={80}
-        />
-        <img
-          css={styles.coin}
-          draggable
-          onDragStart={(e) => {
-            onDragStart(e, 5);
-          }}
-          onDragEnd={onDragEnd}
-          src="http://127.0.0.1:8000/images/5yen.png"
-          alt="五円"
-          width={85}
-          height={85}
-        />
-        <img 
-          css={styles.coin}
-          draggable
-          onDragStart={(e) => {
-            onDragStart(e, 10);
-          }}
-          onDragEnd={onDragEnd}
-          src="http://127.0.0.1:8000/images/10yen.png"
-          alt="十円"
-          width={100}
-          height={100}
-        />
-        <img
-          css={styles.coin}
-          draggable
-          onDragStart={(e) => {
-            onDragStart(e, 50);
-          }}
-          onDragEnd={onDragEnd}
-          src="http://127.0.0.1:8000/images/50yen.png"
-          alt="五十円"
-          width={90}
-          height={90}
-        />
-        <img
-          css={styles.coin}
-          draggable
-          onDragStart={(e) => {
-            onDragStart(e, 100);
-          }}
-          onDragEnd={onDragEnd}
-          src="http://127.0.0.1:8000/images/100yen.png"
-          alt="百円"
-          width={100}
-          height={100}
-        />
-        <img
-          css={styles.coin}
-          draggable
-          onDragStart={(e) => {
-            onDragStart(e, 500);
-          }}
-          onDragEnd={onDragEnd}
-          src="http://127.0.0.1:8000/images/500yen.png"
-          alt="五百円"
-          width={120}
-          height={120}
-        />
-      </div>
+          onDrop={onDrop}
+          css={styles.inputHall}
+          onClick={() => setInputValue(0)}
+        >
+          <img
+            src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/coin_tounyuguchi.png"}
+            alt="硬貨投入口"
+            width={400}
+          />
+        </div>
+        <div css={styles.Conins}>
+          <img
+            css={styles.coin}
+            draggable
+            onDragStart={(e) => {
+              onDragStart(e, 1);
+            }}
+            onDragEnd={onDragEnd}
+            src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/1yen.png"}
+            alt="一円"
+            width={80}
+            height={80}
+          />
+          <img
+            css={styles.coin}
+            draggable
+            onDragStart={(e) => {
+              onDragStart(e, 5);
+            }}
+            onDragEnd={onDragEnd}
+            src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/5yen.png"}
+            alt="五円"
+            width={85}
+            height={85}
+          />
+          <img
+            css={styles.coin}
+            draggable
+            onDragStart={(e) => {
+              onDragStart(e, 10);
+            }}
+            onDragEnd={onDragEnd}
+            src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/10yen.png"}
+            alt="十円"
+            width={100}
+            height={100}
+          />
+          <img
+            css={styles.coin}
+            draggable
+            onDragStart={(e) => {
+              onDragStart(e, 50);
+            }}
+            onDragEnd={onDragEnd}
+            src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/50yen.png"}
+            alt="五十円"
+            width={90}
+            height={90}
+          />
+          <img
+            css={styles.coin}
+            draggable
+            onDragStart={(e) => {
+              onDragStart(e, 100);
+            }}
+            onDragEnd={onDragEnd}
+            src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/100yen.png"}
+            alt="百円"
+            width={100}
+            height={100}
+          />
+          <img
+            css={styles.coin}
+            draggable
+            onDragStart={(e) => {
+              onDragStart(e, 500);
+            }}
+            onDragEnd={onDragEnd}
+            src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/500yen.png"}
+            alt="五百円"
+            width={120}
+            height={120}
+          />
+        </div>
       </div>
       <div>
-
         <Button
           variant="contained"
           size="large"

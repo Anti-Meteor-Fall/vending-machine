@@ -53,8 +53,9 @@ export default function Home({ productListData }: Props) {
           display: flex;
           align-items: center;
           justify-content: space-around;
-          background-color: #8ec5fc;
-          background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+          // background-color: #8ec5fc;
+          // background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+          background: linear-gradient(220.55deg, #7CF7FF 0%, #4B73FF 100%);
         `,
     productList: css `
       width: 880px;

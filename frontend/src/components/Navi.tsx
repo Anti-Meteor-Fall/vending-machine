@@ -15,7 +15,6 @@ export default function Navi() {
   useEffect(() => {
     getWeatherInfo().then((res) => setWeatherData(res));
   }, []);
-  console.log(weatherData);
 
   const { minutes, hours, ampm } = useTime({ format: "12-hour" });
 
