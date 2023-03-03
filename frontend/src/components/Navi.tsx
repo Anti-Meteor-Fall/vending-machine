@@ -4,17 +4,19 @@ import { cashInputValue } from "@/states/cashInputValue";
 import { WeatherData } from "@/types/api";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
+import { useTime } from "react-timer-hook";
 import { useRecoilState } from "recoil";
 
 export default function Navi() {
-  const [weatherData, setWeatherData] = useState<WeatherData[] | undefined>();
+  const [weatherData, setWeatherData] = useState<WeatherData | undefined>();
 
-  const [inputValue, setInputValue] = useRecoilState<number>(cashInputValue);
-
+  const [inputValue] = useRecoilState<number>(cashInputValue);
 
   useEffect(() => {
     getWeatherInfo().then((res) => setWeatherData(res));
   }, []);
+
+  const { minutes, hours, ampm } = useTime({ format: "12-hour" });
 
   let url;
   let text;
@@ -59,7 +61,10 @@ export default function Navi() {
       {/* {text} */}
       <div css={styles.rightDiv}>
         <div css={styles.flex}>
-          <div css={styles.time}>AM 12:00</div>
+          <div css={styles.time}>
+            {ampm.toUpperCase()} {("00" + hours).slice(-2)}:
+            {("00" + minutes).slice(-2)}
+          </div>
           <img src={url} alt={title} />
         </div>
         <div css={styles.input}>投入金額　{inputValue}円</div>

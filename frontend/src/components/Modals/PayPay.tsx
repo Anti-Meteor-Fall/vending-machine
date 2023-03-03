@@ -33,7 +33,7 @@ const PayPay = () => {
       onClick={() => {
         audio.play();
         audio.currentTime = 1;
-        setOder(2);
+        setOder(3);
       }}
     >
       <div css={styles.centerContent}>

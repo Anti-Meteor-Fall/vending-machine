@@ -59,5 +59,6 @@ export const getWeatherInfo = async (): Promise<WeatherData[]> => {
   );
   const data: WeatherData[] = await res.json();
 
+
   return data;
 };
