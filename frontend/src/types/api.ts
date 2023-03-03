@@ -1,12 +1,12 @@
 export type Product = {
-    id: number;
-    name: string;
-    price: number;
-    image: string;
-    is_set: boolean;
-    quantity: number;
-    created_at: string;
-    updated_at: string;
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  is_set: boolean;
+  quantity: number;
+  created_at: string;
+  updated_at: string;
 };
 
 // 天気予報
@@ -50,4 +50,4 @@ export type WeatherData = {
     };
     uvIndex?: string;
   }[];
-}
+};
