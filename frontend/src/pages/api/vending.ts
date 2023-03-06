@@ -14,6 +14,8 @@ export const getProductList = async (): Promise<Product[]> => {
 
 // バックエンドへ商品在庫の送信
 export const putProductQuantity = (id: number, quantity: number) => {
+  console.log("在庫");
+  
   fetch(
     `http://${process.env.NEXT_PUBLIC_HOST_ADDRES}:8000/api/vending/products/` +
       id,
@@ -24,8 +26,8 @@ export const putProductQuantity = (id: number, quantity: number) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: id,
-        quantity: quantity,
+        "id": id,
+        "quantity": quantity,
       }),
     }
   );
@@ -45,8 +47,8 @@ export const postOrderMethod = (
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        product_id: product_id,
-        order_method_id: order_method_id,
+        "product_id": product_id,
+        "order_method_id": order_method_id,
       }),
     }
   );
