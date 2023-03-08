@@ -29,6 +29,8 @@ const styles = {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: "Noto Sans JP", sans-serif;
+
   `,
 };
 type propType ={
