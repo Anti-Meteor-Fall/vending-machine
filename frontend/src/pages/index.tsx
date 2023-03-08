@@ -41,6 +41,8 @@ export default function Home({ productListData }: Props) {
   const styles = {
     main: darkMode
       ? css `
+    padding-top:110px;
+
           height: 100vh;
           display: flex;
           align-items: center;

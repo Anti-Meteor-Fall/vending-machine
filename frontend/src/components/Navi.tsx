@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { getWeatherInfo } from "@/pages/api/vending";
 import { cashInputValue } from "@/states/cashInputValue";
+import { darkModeState } from "@/states/darkModeState";
 import { WeatherData } from "@/types/api";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
@@ -11,6 +12,9 @@ export default function Navi() {
   const [weatherData, setWeatherData] = useState<WeatherData | undefined>();
 
   const [inputValue] = useRecoilState<number>(cashInputValue);
+
+  const [darkMode] = useRecoilState(darkModeState);
+
 
   useEffect(() => {
     getWeatherInfo().then((res) => setWeatherData(res));
@@ -28,10 +32,16 @@ export default function Navi() {
     url = weatherData.forecasts[0].image.url;
   }
   const styles = {
-    navi: css`
+    navi: darkMode? css`
+      color: #fff;
       position: fixed;
       width: 100vw;
-    `,
+    `:
+    css`
+      position: fixed;
+      width: 100vw;
+    `
+    ,
     rightDiv: css`
       position: absolute;
       top: 0;
