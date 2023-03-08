@@ -8,12 +8,12 @@ import { orderState } from "@/states/orderState";
 import { cashInputValue } from "@/states/cashInputValue";
 
 const styles = {
-  cover: css`
+  cover: css `
     max-width: 1000px;
     min-height: 500px;
     padding: 20px;
-  `,
-  showInputValue: css`
+   `,
+  showInputValue: css `
     width: 200px;
     font-size: 3rem;
     font-family: "Orbitron", sans-serif;
@@ -22,28 +22,28 @@ const styles = {
     margin: 30px;
     padding: 10px;
     display: inline;
-  `,
-  inputHall: css`
+   `,
+  inputHall: css `
     &:hover {
       cursor: pointer;
     }
-  `,
-  Conins: css`
+   `,
+  Conins: css `
     width: 400px;
     margin: 0px;
     display: flex;
     flex-wrap: wrap;
     flex: auto;
     align-items: center;
-  `,
-  coin: css`
+   `,
+  coin: css `
     &:hover {
       cursor: pointer;
     }
-  `,
-  flex: css`
+   `,
+  flex: css `
     flex-wrap: wrap;
-  `,
+   `,
 };
 
 const Cash = () => {
@@ -96,9 +96,67 @@ const Cash = () => {
   const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
     console.log("on drop", e);
   };
+  
+  const onClick =  (num: number)=>{
+    setInputValue((prevCount) => prevCount + num);
+    
+  }
   const buttonProp = { width: 120, padding: 2, margin: 2, zIndex: 10 };
 
+  type coinInfo = {
+    name:string,
+    range:number,
+    url:string
+}
+const CoinData:coinInfo[] = [
+  {
+    name:"一円",
+    range:80,
+    url:"1yen.png"
+  },
+    {
+    name:"五円",
+    range:85,
+    url:"5yen.png"
+  },
+    {
+    name:"十円",
+    range:100,
+    url:"10yen.png"
+  },
+    {
+    name:"五十円",
+    range:90,
+    url:"50yen.png"
+  },
+    {
+    name:"百円",
+    range:100,
+    url:"100yen.png"
+  },
+    {
+    name:"五百円",
+    range:120,
+    url:"500yen.png"
+  },
   
+]
+
+const value= [
+  1,5,10,50,100,500
+]
+const CoinConmponent = (coinin:coinInfo,index:number) =>{
+  const coin = <img 
+    onClick={()=>{onClick(value[index])}}
+    onDragStart={(e)=>onDragStart(e,value[index])} 
+    onDragEnd={(e)=>onDragEnd(e)} 
+    key={index} 
+    src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/"+coinin.url} 
+    alt={coinin.name} 
+    width={coinin.range}/>
+  return coin
+}
+
 
   return (
     <div css={styles.cover}>
@@ -123,78 +181,9 @@ const Cash = () => {
           />
         </div>
         <div css={styles.Conins}>
-          <img
-            css={styles.coin}
-            draggable
-            onDragStart={(e) => {
-              onDragStart(e, 1);
-            }}
-            onDragEnd={onDragEnd}
-            src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/1yen.png"}
-            alt="一円"
-            width={80}
-            height={80}
-          />
-          <img
-            css={styles.coin}
-            draggable
-            onDragStart={(e) => {
-              onDragStart(e, 5);
-            }}
-            onDragEnd={onDragEnd}
-            src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/5yen.png"}
-            alt="五円"
-            width={85}
-            height={85}
-          />
-          <img
-            css={styles.coin}
-            draggable
-            onDragStart={(e) => {
-              onDragStart(e, 10);
-            }}
-            onDragEnd={onDragEnd}
-            src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/10yen.png"}
-            alt="十円"
-            width={100}
-            height={100}
-          />
-          <img
-            css={styles.coin}
-            draggable
-            onDragStart={(e) => {
-              onDragStart(e, 50);
-            }}
-            onDragEnd={onDragEnd}
-            src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/50yen.png"}
-            alt="五十円"
-            width={90}
-            height={90}
-          />
-          <img
-            css={styles.coin}
-            draggable
-            onDragStart={(e) => {
-              onDragStart(e, 100);
-            }}
-            onDragEnd={onDragEnd}
-            src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/100yen.png"}
-            alt="百円"
-            width={100}
-            height={100}
-          />
-          <img
-            css={styles.coin}
-            draggable
-            onDragStart={(e) => {
-              onDragStart(e, 500);
-            }}
-            onDragEnd={onDragEnd}
-            src={"http://"+process.env.NEXT_PUBLIC_HOST_ADDRES+":8000/images/500yen.png"}
-            alt="五百円"
-            width={120}
-            height={120}
-          />
+        {CoinData.map((coin, index) => (
+                  CoinConmponent(coin, index)
+        ))}
         </div>
       </div>
       <div>
