@@ -10,7 +10,7 @@ const styles = {
     min-height: 300px;
   `,
   cardList: css`
-    margin: 30px;
+    margin: 60px 30px;
     width: 350px;
   `,
   touch: css`
