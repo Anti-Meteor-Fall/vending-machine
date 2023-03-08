@@ -28,7 +28,7 @@ const styles = {
     top: calc(50% - 800px);
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #eee;
+    background-color: #fff;
     border-radius: 30px;
     z-index: 100;
   `,
