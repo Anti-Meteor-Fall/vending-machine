@@ -59,3 +59,13 @@ python manage.py createsuperuser
 psql -f /パスを記載/vending-machine/backend/sql/vending_products.sql -U postgres -d vending_machine
 
 ```
+# 各種バージョン
+python 3.11.0(3.9.xでも動作確認済み)
+django 4.1.7
+djangorestframework 3.14.0
+django-environ 0.9.0
+django-cors-headers 3.13.0
+psycopg2-binary 2.9.5
+requests 2.28.1
+Pillow 9.2.0
+pytz 2022.7.1
